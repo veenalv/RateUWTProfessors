@@ -1,5 +1,6 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,6 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         //String content = getApplicationContext().getText().toString(); //gets you the contents of edit text
         Log.d("EMAIL", email.getText().toString());
         Log.d("PASSWORD", password.getText().toString());
+    }
+
+    public void registerClick(View theView) {
+        //String content = getApplicationContext().getText().toString(); //gets you the contents of edit text
+        Intent registerIntent = new Intent(this, RegisterActivity.class);
+        startActivity(registerIntent);
     }
 }
 
