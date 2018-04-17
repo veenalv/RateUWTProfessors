@@ -12,16 +12,21 @@ import android.widget.EditText;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    EditText email;
+    EditText password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        email = (EditText)findViewById(R.id.email);
+        password = (EditText)findViewById(R.id.password);
     }
 
     public void onClick(View theView) {
         //String content = getApplicationContext().getText().toString(); //gets you the contents of edit text
-        Log.d("EMAIL", findViewById(R.id.email).toString());
-        Log.d("PASSWORD", findViewById(R.id.password).toString());
+        Log.d("EMAIL", email.getText().toString());
+        Log.d("PASSWORD", password.getText().toString());
     }
 }
 
