@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        android:id="@+id/search"
+        app:showAsAction="ifRoom" />
+    <item
+        android:title="My Rating"
+        android:id ="@+id/my_rating"
+        app:showAsAction="never" />
+
+    <item
+        android:title="Stard Rating"
+        android:id="@+id/stard_rating"
+        app:showAsAction="never" />
+
+    <item
+        android:title="Setting"
+        android:id="@+id/setting"
+        app:showAsAction="never" />
+    <item
+        android:title="Submit a Rating"
+        android:id="@+id/sumbit_a_rating"
+        app:showAsAction="never" />
+    <item
+        android:title="Professor"
+        android:id="@+id/professor"
+        app:showAsAction="ifRoom" />
+</menu>

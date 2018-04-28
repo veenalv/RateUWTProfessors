@@ -28,6 +28,14 @@ public class LoginActivity extends AppCompatActivity {
         //String content = getApplicationContext().getText().toString(); //gets you the contents of edit text
         Log.d("EMAIL", email.getText().toString());
         Log.d("PASSWORD", password.getText().toString());
+
+
+        // Add code to authenticated user.
+
+        // if authentication is successful, switch to rating fragment, show rating.
+        Intent ratingIntent = new Intent(this, RatingActivity.class);
+        startActivity(ratingIntent);
+
     }
 
     public void registerClick(View theView) {
@@ -35,5 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent registerIntent = new Intent(this, RegisterActivity.class);
         startActivity(registerIntent);
     }
+
 }
 
