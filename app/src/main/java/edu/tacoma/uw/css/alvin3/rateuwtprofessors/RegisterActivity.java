@@ -46,11 +46,11 @@ public class RegisterActivity extends AppCompatActivity {
         // register now
         if (!mCheckBox.isChecked()) {
             Toast.makeText(getBaseContext(),"Must agree to terms in order to register",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
         } else {
 
             // TODO: add checks to make sure it's a uw email.
-            if (!mEmail.getText().toString().endsWith("@uw.edu")) {
+            if (!mEmail.getText().toString().endsWith("@uw.edu") && mPassword.getText().toString() != null) {
                 Toast.makeText(getBaseContext(), "must use uw.edu email",
                         Toast.LENGTH_SHORT).show();
             } else {
@@ -88,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
     }
+
     protected void finish(View view) {
         this.finish();
     }
