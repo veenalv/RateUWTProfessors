@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "279735653689",
+    "firebase_url": "https://rateuwtprofessors-ad447.firebaseio.com",
+    "project_id": "rateuwtprofessors-ad447",
+    "storage_bucket": "rateuwtprofessors-ad447.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279735653689:android:0b2ccb4ea4e9b2cc",
+        "android_client_info": {
+          "package_name": "edu.tacoma.uw.css.alvin3.rateuwtprofessors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279735653689-bq6k80n0i303c77bbt2cu8ompka2bp5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.tacoma.uw.css.alvin3.rateuwtprofessors",
+            "certificate_hash": "ee922c15cbfa2147140c5b7121756f3c29cfa417"
+          }
+        },
+        {
+          "client_id": "279735653689-vrisduklfbg9jfann73limuco67htr87.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj1O13Su0RfrU46QWw6TFpoDFcC1UhcbE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279735653689-vrisduklfbg9jfann73limuco67htr87.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
