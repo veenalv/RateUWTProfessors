@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (!mEmail.getText().toString().endsWith("@uw.edu") && mPassword.getText().toString() != null) {
                 Toast.makeText(getBaseContext(), "must use uw.edu email",
                         Toast.LENGTH_SHORT).show();
-            } else {
+            } else { // TODO: make sure password meets requirements. Over 6 characters long. Das it
                 mAuth.createUserWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
