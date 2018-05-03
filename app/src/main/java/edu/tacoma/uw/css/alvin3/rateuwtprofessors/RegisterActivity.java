@@ -50,41 +50,42 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
 
             // TODO: add checks to make sure it's a uw email.
-
-            mAuth.createUserWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d("Registration: ", "createUserWithEmail:success");
-                                Toast.makeText(getBaseContext(), "Account created.",
-                                        Toast.LENGTH_SHORT).show();
-
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                user.sendEmailVerification()
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Log.d("Email", "Email sent.");
+            if (!mEmail.getText().toString().endsWith("@uw.edu")) {
+                Toast.makeText(getBaseContext(), "must use uw.edu email",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                mAuth.createUserWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    user.sendEmailVerification()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(getBaseContext(), "Email verification sent",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
-                                            }
-                                        });
+                                            });
 
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w("Registration: ", "createUserWithEmail:failure", task.getException());
-                                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                    Toast.makeText(getBaseContext(), "Account is already registered",
-                                            Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(getBaseContext(), "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    // If sign in fails, display a message to the user.
+                                    Log.w("Registration: ", "createUserWithEmail:failure", task.getException());
+                                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                        Toast.makeText(getBaseContext(), "Account is already registered",
+                                                Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
+            }
         }
     }
     protected void finish(View view) {
