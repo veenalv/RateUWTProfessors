@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(),"Must agree to terms in order to register",
                     Toast.LENGTH_LONG).show();
         } else {
-            
+
             // TODO: add checks to make sure it's a uw email.
 
             mAuth.createUserWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())

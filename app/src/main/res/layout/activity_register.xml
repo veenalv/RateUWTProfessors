@@ -15,14 +15,13 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="80dp"
         android:ems="10"
-        android:hint="@string/prompt_email"
+        android:hint="uwnetid@uw.edu"
         android:inputType="textEmailAddress"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -60,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.295"
+        app:layout_constraintVertical_bias="0.154"
         tools:text="@string/goback" />
 
     <Button
@@ -77,7 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.289"
+        app:layout_constraintVertical_bias="0.154"
         tools:text="@string/action_register" />
 
     <CheckBox
