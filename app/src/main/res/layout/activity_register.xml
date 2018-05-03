@@ -17,7 +17,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
         android:ems="10"
-        android:hint="uwnetid@uw.edu"
+        android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

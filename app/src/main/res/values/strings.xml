@@ -3,7 +3,7 @@
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">UW Email</string>
+    <string name="prompt_email">uwnetid@uw.edu</string>
     <string name="goback">Go Back</string>
     <string name="prompt_password">Password</string>
     <string name="first_name">First name</string>
