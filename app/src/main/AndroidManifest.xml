@@ -33,5 +33,6 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".RatingActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -1,9 +1,14 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class RatingActivity extends AppCompatActivity {
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
+
+public class RatingActivity extends AppCompatActivity implements
+        RatingListFragment.OnListFragmentInteractionListener,
+        RatingDeatilFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +21,24 @@ public class RatingActivity extends AppCompatActivity {
                     .commit();
         }
 
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(Rating item) {
+        RatingDeatilFragment ratingDeatilFragment = new RatingDeatilFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(RatingDeatilFragment.RATING_ITEM_SELECTED,item);
+        ratingDeatilFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.rating_fragment_container,ratingDeatilFragment)
+                .addToBackStack(null)
+                .commit();
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }

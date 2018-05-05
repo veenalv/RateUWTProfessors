@@ -1,17 +1,25 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
-
+import org.json.JSONException;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
@@ -23,6 +31,16 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
  * interface.
  */
 public class RatingListFragment extends Fragment {
+
+    private List<Rating> mRatingList;
+
+    //Create a member variable for the RecyclerView so that we can access it in the
+    //thread to load the data.
+    private RecyclerView mRecyclerView;
+
+    private static final String RATING_URL =
+            "http://cssgate.insttech.washington.edu/~caih6/professorList.php?cmd=ratings";
+
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -64,28 +82,30 @@ public class RatingListFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            mRecyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyRatingRecyclerViewAdapter(Rating.ITEMS, mListener));
+            // recyclerView.setAdapter(new MyRatingRecyclerViewAdapter(Rating.ITEMS, mListener));
+            RatingAsyncTask ratingAsynTask = new RatingAsyncTask();
+            ratingAsynTask.execute(new String[]{RATING_URL});
         }
         return view;
     }
 
-//
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnListFragmentInteractionListener) {
-//            mListener = (OnListFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
-//        }
-//    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
+    }
 
     @Override
     public void onDetach() {
@@ -105,6 +125,63 @@ public class RatingListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Rating.RatingItem item);
+        void onListFragmentInteraction(Rating item);
+    }
+
+    /**
+     * Create a private class to setup asynchronous loading of the data.
+     */
+    private class RatingAsyncTask extends AsyncTask<String, Void, String> {
+        private static final String TAG = "RatingListFragment";
+        @Override
+        protected String doInBackground(String... urls) {
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            for (String url : urls) {
+                try {
+                    URL urlObject = new URL(url);
+                    urlConnection = (HttpURLConnection) urlObject.openConnection();
+                    InputStream content = urlConnection.getInputStream();
+                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                    String s = "";
+                    while ((s = buffer.readLine()) != null) {
+                        response += s;
+                    }
+                } catch (Exception e) {
+                    response = "Unable to download the list of course, Reason: " +
+                            e.getMessage();
+                } finally {
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+
+            }
+            return response;
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i(TAG,"onPostExecute");
+            if(result.startsWith("Unable to")){
+                Toast.makeText(getActivity().getApplicationContext(),result,Toast.LENGTH_LONG)
+                        .show();
+                return;
+            }
+            try{
+                mRatingList = Rating.parseRatingJSON(result);
+            }
+            catch(JSONException e){
+                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(),
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            //Everything is good, show the list of rating
+            if(!mRatingList.isEmpty()){
+                mRecyclerView.setAdapter(new MyRatingRecyclerViewAdapter(mRatingList, mListener));
+            }
+        }
     }
 }
