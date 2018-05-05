@@ -6,6 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/uwPurple</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:tint">@color/uwPurple</item>
+        <item name="android:editTextColor">@color/uwDarkGray</item>
+        <item name="android:textColorHint">@color/uwDarkGray</item>
     </style>
+
+    <!-- Styles for all EditText -->
+    <style name="ButtonTextStyle" >
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/uwPurple</item>
+        <item name="android:typeface">monospace</item>
+
+    </style>
+
 
 </resources>
