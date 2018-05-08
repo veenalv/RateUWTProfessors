@@ -22,8 +22,9 @@ public class Rating implements Serializable{
     public static final String HELPOFFERRED="HelpOfferred";
     public static final String WRITTENREVIEW="WrittenReview";
     public static final String EMAILADDRESS="EmailAddress";
-    private String mProfessorName, mWrittenReview, mEmailAddress,
-            mOverallQuality, mDifficuty,mTeachingAblity,mHelpOfferred;
+    private String mProfessorName, mWrittenReview, mEmailAddress;
+           ;
+    private int  mOverallQuality, mDifficuty,mTeachingAblity,mHelpOfferred;
 
     /**
      * Create a constructor.
@@ -35,8 +36,8 @@ public class Rating implements Serializable{
      * @param mHelpOfferred
      */
     public Rating(String mProfessorName, String mWrittenReview, String mEmailAddress,
-                  String mOverallQuality, String mDifficuty, String mTeachingAblity,
-                  String mHelpOfferred){
+                  int mOverallQuality, int mDifficuty, int mTeachingAblity,
+                  int mHelpOfferred){
         this.mProfessorName = mProfessorName;
         this.mWrittenReview = mWrittenReview;
         this.mOverallQuality = mOverallQuality;
@@ -69,34 +70,34 @@ public class Rating implements Serializable{
         return mEmailAddress;
     }
 
-    public void setmOverallQuality(String overallQuality){
+    public void setmOverallQuality(int overallQuality){
         mOverallQuality=overallQuality;
     }
-    public String getmOverallQuality(){
+    public int getmOverallQuality(){
         return mOverallQuality;
     }
 
 
-    public void setmDifficuty(String difficuty){
+    public void setmDifficuty(int difficuty){
         mDifficuty=difficuty;
     }
-    public String getmDifficuty(){
+    public int getmDifficuty(){
         return mDifficuty;
     }
 
 
-    public void setmTeachingablity(String teachingablity){
+    public void setmTeachingablity(int teachingablity){
         mTeachingAblity = teachingablity;
     }
-    public String getmTeachingAblity(){
+    public int getmTeachingAblity(){
         return mTeachingAblity;
     }
 
 
-    public void setmHelpofferred(String helpofferred){
+    public void setmHelpofferred(int helpofferred){
         mHelpOfferred = helpofferred;
     }
-    public String getmHelpOfferred(){
+    public int getmHelpOfferred(){
         return mHelpOfferred;
     }
 
@@ -114,9 +115,9 @@ public class Rating implements Serializable{
             for(int i = 0; i< arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
                 Rating rating = new Rating(obj.getString(NAME),obj.getString(WRITTENREVIEW),
-                        obj.getString(EMAILADDRESS), obj.getString(OVRALLQUALITY),
-                        obj.getString(DIFFICUTY), obj.getString(TEACHINGABLITY),
-                        obj.getString(HELPOFFERRED));
+                        obj.getString(EMAILADDRESS), obj.getInt(OVRALLQUALITY),
+                        obj.getInt(DIFFICUTY), obj.getInt(TEACHINGABLITY),
+                        obj.getInt(HELPOFFERRED));
 
                 ratingList.add(rating);
             }

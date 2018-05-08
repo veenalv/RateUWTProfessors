@@ -95,11 +95,11 @@ public class RatingDeatilFragment extends Fragment {
     public void updateView(Rating rating){
         if(rating != null){
             mProfessorNameTextView.setText("                "+rating.getmProfessorName());
-            mQvrallQualityTextView.setText("  Overall Quality:     "+rating.getmOverallQuality());
-            mDifficutyTextView.setText("  Difficulty:               "+rating.getmDifficuty());
-            mTeachingAblityTextView.setText("  Teaching Ablity:    "+rating.getmTeachingAblity());
+            mQvrallQualityTextView.setText("  Overall Quality:     "+ String.valueOf(rating.getmOverallQuality()));
+            mDifficutyTextView.setText("  Difficulty:               "+String.valueOf(rating.getmDifficuty()));
+            mTeachingAblityTextView.setText("  Teaching Ablity:    "+String.valueOf(rating.getmTeachingAblity()));
             mWrittenReviewTextView.setText("  Written Review:     "+rating.getmWrittenReview());
-            mHelpOfferredTextView.setText("  Help Offerred:        "+rating.getmHelpOfferred());
+            mHelpOfferredTextView.setText("  Help Offerred:        "+String.valueOf(rating.getmHelpOfferred()));
             // mEmailAddressTextView.setText(rating.getmEmailAddress());
 
 

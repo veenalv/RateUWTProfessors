@@ -21,5 +21,15 @@
 
     </style>
 
+    <!-- Styles for Welcome TEXT -->
+    <style name="WelcomeTextStyle" >
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@color/uwPurple</item>
+    </style>
+
+    <style name="WelcomeTextStyle.RateProfessorTextStyle">
+        <item name="android:textSize">25sp</item>
+    </style>
+
 
 </resources>
