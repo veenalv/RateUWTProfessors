@@ -1,61 +1,128 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Rating {
-    /**
-     * An array of sample (dummy) items.
-     */
-    public static final List<RatingItem> ITEMS = new ArrayList<RatingItem>();
+/**
+ * Make the Rating class implement Serializable. This allows us to the pass
+ * the object as a parameter.
+ */
+public class Rating implements Serializable{
+    public static final String NAME ="Name";
+    public static final String OVRALLQUALITY ="OvrallQuality";
+    public static final String DIFFICUTY ="Difficuty";
+    public static final String TEACHINGABLITY ="TeachingAblity";
+    public static final String HELPOFFERRED="HelpOfferred";
+    public static final String WRITTENREVIEW="WrittenReview";
+    public static final String EMAILADDRESS="EmailAddress";
+    private String mProfessorName, mWrittenReview, mEmailAddress;
+           ;
+    private int  mOverallQuality, mDifficuty,mTeachingAblity,mHelpOfferred;
 
     /**
-     * A map of sample (Rating) items, by ID.
+     * Create a constructor.
+     * @param mProfessorName
+     * @param mWrittenReview
+     * @param mOverallQuality
+     * @param mDifficuty
+     * @param mTeachingAblity
+     * @param mHelpOfferred
      */
-    public static final Map<String, RatingItem> ITEM_MAP = new HashMap<String, RatingItem>();
-    private static final int COUNT = 25;
-    static{
-        //Add some sample items.
-        for(int i = 1; i<= COUNT;i++){
-            addRating(createRatingItem(i));
-        }
+    public Rating(String mProfessorName, String mWrittenReview, String mEmailAddress,
+                  int mOverallQuality, int mDifficuty, int mTeachingAblity,
+                  int mHelpOfferred){
+        this.mProfessorName = mProfessorName;
+        this.mWrittenReview = mWrittenReview;
+        this.mOverallQuality = mOverallQuality;
+        this.mDifficuty = mDifficuty;
+        this.mTeachingAblity = mTeachingAblity;
+        this.mHelpOfferred = mHelpOfferred;
+        this.mEmailAddress = mEmailAddress;
+
     }
 
-    private static RatingItem createRatingItem (int postion){
-        return new RatingItem(String.valueOf(postion),"Recent Rating " + postion);
+    public void setmProfessorName(String professorName){
+        mProfessorName = professorName;
     }
-//
-//
-//    private static String makeDetails(int position) {
-//        StringBuilder builder = new StringBuilder();
-//        builder.append("Details about Item: ").append(position);
-//        for (int i = 0; i < position; i++) {
-//            builder.append("\nMore details information here.");
-//        }
-//        return builder.toString();
-//    }
-
-    private static void addRating(RatingItem item){
-        ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+    public String getmProfessorName(){
+        return mProfessorName;
     }
 
-    public static class RatingItem implements Serializable {
-        public final String id;
-        public final String content;
-        public RatingItem(String id, String content) {
-            this.id = id;
-            this.content = content;
-            //this.details = details;
-        }
 
-        @Override
-        public String toString() {
-            return content;
+    public void setmWrittenReview(String writtenReview){
+        mWrittenReview = writtenReview;
+    }
+    public String getmWrittenReview(){
+        return mWrittenReview;
+    }
+
+    public void setmEmailAddress(String emailAddress){
+        mEmailAddress=emailAddress;
+    }
+    public String getmEmailAddress(){
+        return mEmailAddress;
+    }
+
+    public void setmOverallQuality(int overallQuality){
+        mOverallQuality=overallQuality;
+    }
+    public int getmOverallQuality(){
+        return mOverallQuality;
+    }
+
+
+    public void setmDifficuty(int difficuty){
+        mDifficuty=difficuty;
+    }
+    public int getmDifficuty(){
+        return mDifficuty;
+    }
+
+
+    public void setmTeachingablity(int teachingablity){
+        mTeachingAblity = teachingablity;
+    }
+    public int getmTeachingAblity(){
+        return mTeachingAblity;
+    }
+
+
+    public void setmHelpofferred(int helpofferred){
+        mHelpOfferred = helpofferred;
+    }
+    public int getmHelpOfferred(){
+        return mHelpOfferred;
+    }
+
+    /**
+     * Add a method to parse json String.
+     * @param ratingJSON
+     * @return
+     * @throws JSONException
+     */
+    public static List<Rating> parseRatingJSON(String ratingJSON) throws JSONException{
+        List<Rating> ratingList = new ArrayList<Rating>();
+        if(ratingJSON !=null){
+            JSONArray arr = new JSONArray(ratingJSON);
+
+            for(int i = 0; i< arr.length(); i++){
+                JSONObject obj = arr.getJSONObject(i);
+                Rating rating = new Rating(obj.getString(NAME),obj.getString(WRITTENREVIEW),
+                        obj.getString(EMAILADDRESS), obj.getInt(OVRALLQUALITY),
+                        obj.getInt(DIFFICUTY), obj.getInt(TEACHINGABLITY),
+                        obj.getInt(HELPOFFERRED));
+
+                ratingList.add(rating);
+            }
         }
+        return ratingList;
     }
 
 

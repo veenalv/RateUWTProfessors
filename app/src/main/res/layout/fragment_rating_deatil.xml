@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RatingDeatilFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:id="@+id/rating_professor_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="30dp" />
+
+    <TextView
+        android:id="@+id/rating_overall_quality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_marginBottom="10dp"
+        tools:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/rating_difficuty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_marginBottom="10dp"
+        tools:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/rating_teaching_ablity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_marginBottom="10dp"
+        tools:layout_marginTop="10dp" />
+
+
+    <TextView
+        android:id="@+id/rating_help_offerred"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_marginBottom="10dp"
+        tools:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/rating_written_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_marginBottom="10dp"
+        tools:layout_marginTop="10dp" />
+
+</LinearLayout>

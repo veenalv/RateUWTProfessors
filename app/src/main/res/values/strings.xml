@@ -19,4 +19,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="start">Start</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="welcome_to">     Welcome to Rate UWT Professors !</string>
+    <string name="rate_professors">Rate UWT Professors !</string>
 </resources>
