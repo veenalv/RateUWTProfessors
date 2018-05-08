@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.uw.tacoma.css.mmuppa.webserviceslab.CourseActivity">
+    tools:context="edu.uw.tacoma.css.mmuppa.webserviceslab.Activity">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_baseline_search_24px"
-        android:title="Search"
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_baseline_more_vert_24px"
+        android:title="Settings"
         app:showAsAction="ifRoom"/>
 </menu>

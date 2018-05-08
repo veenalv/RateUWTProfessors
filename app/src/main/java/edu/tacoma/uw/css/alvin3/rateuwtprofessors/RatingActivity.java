@@ -31,6 +31,7 @@ public class RatingActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_rating, menu);
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
     }
 
@@ -42,8 +43,11 @@ public class RatingActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-            Toast.makeText(this, "Showing courses in CSS", Toast.LENGTH_SHORT)
+        if (id == R.id.action_search) {
+            Toast.makeText(this, "SEARCH CLIOCKED", Toast.LENGTH_SHORT)
+                    .show();
+        } else if (id == R.id.action_settings) {
+            Toast.makeText(this, "SSETTINGS CLICKED", Toast.LENGTH_SHORT)
                     .show();
         }
 
