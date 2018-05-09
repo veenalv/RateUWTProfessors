@@ -1,8 +1,10 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.net.Uri;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -32,7 +34,38 @@ public class RatingActivity extends AppCompatActivity implements
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_rating, menu);
         getMenuInflater().inflate(R.menu.menu_settings, menu);
-        return true;
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView =
+                (SearchView) searchItem.getActionView();
+
+        // Configure the search info and add any event listeners...
+        // Define the listener
+        MenuItem.OnActionExpandListener expandListener = new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                // Do something when action item collapses
+                Toast.makeText(getApplicationContext(), "ACTION COLLAPSED", Toast.LENGTH_SHORT)
+                        .show();
+                return true;  // Return true to collapse action view
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                // Do something when expanded
+                Toast.makeText(getApplicationContext(), "ACTION EXPANDED", Toast.LENGTH_SHORT)
+                        .show();
+                return true;  // Return true to expand action view
+            }
+        };
+
+        // Get the MenuItem for the action item
+        MenuItem actionMenuItem = menu.findItem(R.id.action_search);
+
+        // Assign the listener to that action item
+        actionMenuItem.setOnActionExpandListener(expandListener);
+        // Any other things you have to do when creating the options menu...
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -44,11 +77,11 @@ public class RatingActivity extends AppCompatActivity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
-            Toast.makeText(this, "SEARCH CLIOCKED", Toast.LENGTH_SHORT)
-                    .show();
+//            Toast.makeText(this, "SEARCH CLIOCKED", Toast.LENGTH_SHORT)
+//                    .show();
         } else if (id == R.id.action_settings) {
-            Toast.makeText(this, "SSETTINGS CLICKED", Toast.LENGTH_SHORT)
-                    .show();
+//            Toast.makeText(this, "SSETTINGS CLICKED", Toast.LENGTH_SHORT)
+//                    .show();
         }
 
         return super.onOptionsItemSelected(item);
