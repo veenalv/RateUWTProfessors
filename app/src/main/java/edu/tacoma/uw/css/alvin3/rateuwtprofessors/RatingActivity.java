@@ -1,5 +1,7 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.net.Uri;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +37,8 @@ public class RatingActivity extends AppCompatActivity implements
         getMenuInflater().inflate(R.menu.menu_rating, menu);
         getMenuInflater().inflate(R.menu.menu_settings, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager)
+                getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
                 (SearchView) searchItem.getActionView();
 
@@ -64,6 +68,24 @@ public class RatingActivity extends AppCompatActivity implements
         // Assign the listener to that action item
         actionMenuItem.setOnActionExpandListener(expandListener);
         // Any other things you have to do when creating the options menu...
+        searchView.setSearchableInfo(searchManager.
+                getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getApplicationContext(), "SUBMITTED", Toast.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Toast.makeText(getApplicationContext(), "IT WORKS", Toast.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }
