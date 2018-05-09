@@ -35,8 +35,8 @@ public class MyRatingRecyclerViewAdapter extends RecyclerView.Adapter<MyRatingRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mProfessorView.setText(mValues.get(position).getmProfessorName());
-        //holder.mContentView.setText(mValues.get(position).getmOverallQuality());
+        holder.mProfessorView.setText(mValues.get(position).getProfessorName());
+        //holder.mContentView.setText(mValues.get(position).getOverallQuality());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

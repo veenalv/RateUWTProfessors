@@ -1,3 +1,6 @@
+/**
+ * TCSS 450 - Spring 2018 Team 8.
+ */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.net.Uri;
@@ -6,6 +9,9 @@ import android.os.Bundle;
 
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
 
+/**
+ * Create a parent activity of list fragment.
+ */
 public class RatingActivity extends AppCompatActivity implements
         RatingListFragment.OnListFragmentInteractionListener,
         RatingDeatilFragment.OnFragmentInteractionListener{
@@ -21,9 +27,12 @@ public class RatingActivity extends AppCompatActivity implements
                     .commit();
         }
 
-
     }
 
+    /**
+     * Override OnListfragmentInteraction class's methoid.
+     * @param item rating object
+     */
     @Override
     public void onListFragmentInteraction(Rating item) {
         RatingDeatilFragment ratingDeatilFragment = new RatingDeatilFragment();

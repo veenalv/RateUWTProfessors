@@ -1,3 +1,6 @@
+/**
+ * TCSS 450 - Spring 2018 Team 8.
+ */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.content.Context;
@@ -41,10 +44,7 @@ public class RatingListFragment extends Fragment {
     private static final String RATING_URL =
             "http://cssgate.insttech.washington.edu/~caih6/professorList.php?cmd=ratings";
 
-
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
@@ -55,8 +55,6 @@ public class RatingListFragment extends Fragment {
     public RatingListFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
     public static RatingListFragment newInstance(int columnCount) {
         RatingListFragment fragment = new RatingListFragment();
         Bundle args = new Bundle();
@@ -124,7 +122,6 @@ public class RatingListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Rating item);
     }
 
