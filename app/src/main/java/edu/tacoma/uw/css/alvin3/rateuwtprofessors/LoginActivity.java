@@ -1,8 +1,14 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -43,28 +49,48 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("EMAIL", mEmail.getText().toString());
         Log.d("PASSWORD", mPassword.getText().toString());
 
-        LoginActivity lol = this;
-        // Add code to authenticated user.
-        mAuth.signInWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user.isEmailVerified()) {
-                                goToRatingFragment();
-                            } else { // login is successful, but account is not verified.
-                                Toast.makeText(getBaseContext(), "Please verify account with email",
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo == null || !networkInfo.isConnected()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setMessage("Must be connected to the internet").setTitle("Error");
+            builder.setNeutralButton("Open WIFI settings", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button
+                    startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                }
+            });
+            builder.setPositiveButton("close", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else {
+            // Add code to authenticated user.
+            mAuth.signInWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user.isEmailVerified()) {
+                                    goToRatingFragment();
+                                } else { // login is successful, but account is not verified.
+                                    Toast.makeText(getBaseContext(), "Please verify account with email",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("login", "signInWithEmail:failure", task.getException());
+                                Toast.makeText(getBaseContext(), "Invalid username or password",
                                         Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("login", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getBaseContext(), "Invalid username or password",
-                                    Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+        }
     }
 
     public void goToRatingFragment() {

@@ -1,7 +1,14 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.nfc.Tag;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,15 +55,30 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(),"Must agree to terms in order to register",
                     Toast.LENGTH_SHORT).show();
         } else {
+            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if (networkInfo == null || !networkInfo.isConnected()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-            // TODO: add checks to make sure it's a uw email.
-            if (!mEmail.getText().toString().endsWith("@uw.edu")) {
-                Toast.makeText(getBaseContext(), "must use uw.edu email",
-                        Toast.LENGTH_SHORT).show();
+                builder.setMessage("Must be connected to the internet").setTitle("Error");
+                builder.setNeutralButton("Open WIFI settings", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                });
+                builder.setPositiveButton("close", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else if (!mEmail.getText().toString().endsWith("@uw.edu")) {
+                Toast.makeText(getBaseContext(), "must use uw.edu email", Toast.LENGTH_SHORT).show();
             } else if (mPassword.getText().toString().length() < 6 || mPassword.getText().toString().length() > 15) {
                 Toast.makeText(this, "Password must be 6 to 15 digits long", Toast.LENGTH_SHORT).show();
-
-            } else { // TODO: make sure password meets requirements. Over 6 characters long. Das it
+            } else {
                 mAuth.createUserWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
