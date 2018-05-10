@@ -7,9 +7,11 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -23,14 +25,16 @@ public class RatingActivity extends AppCompatActivity implements
         RatingListFragment.OnListFragmentInteractionListener,
         RatingDeatilFragment.OnFragmentInteractionListener{
 
+    private RatingListFragment rlf;
+    MenuItem actionMenuItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
-
+        rlf = new RatingListFragment();
         if (findViewById(R.id.rating_fragment_container)!= null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.rating_fragment_container, new RatingListFragment())
+                    .add(R.id.rating_fragment_container, rlf)
                     .commit();
         }
 
@@ -38,7 +42,6 @@ public class RatingActivity extends AppCompatActivity implements
 
     /**
      * Override OnListfragmentInteraction class's methoid.
-     * @param item rating object
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,22 +60,21 @@ public class RatingActivity extends AppCompatActivity implements
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 // Do something when action item collapses
-                Toast.makeText(getApplicationContext(), "ACTION COLLAPSED", Toast.LENGTH_SHORT)
-                        .show();
+                rlf.setAdapter(rlf.mRatingList);
                 return true;  // Return true to collapse action view
             }
 
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
                 // Do something when expanded
-                Toast.makeText(getApplicationContext(), "ACTION EXPANDED", Toast.LENGTH_SHORT)
-                        .show();
+                getSupportFragmentManager().popBackStack();
+                rlf.setAdapter(rlf.mRatingList);
                 return true;  // Return true to expand action view
             }
         };
 
         // Get the MenuItem for the action item
-        MenuItem actionMenuItem = menu.findItem(R.id.action_search);
+        actionMenuItem = menu.findItem(R.id.action_search);
 
         // Assign the listener to that action item
         actionMenuItem.setOnActionExpandListener(expandListener);
@@ -90,8 +92,9 @@ public class RatingActivity extends AppCompatActivity implements
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Toast.makeText(getApplicationContext(), "IT WORKS", Toast.LENGTH_SHORT)
-                        .show();
+//                Toast.makeText(getApplicationContext(), String.valueOf(getSupportFragmentManager().getBackStackEntryCount()), Toast.LENGTH_SHORT)
+//                        .show();
+                rlf.setAdapter(rlf.filter(newText));
                 return false;
             }
         });
@@ -128,7 +131,7 @@ public class RatingActivity extends AppCompatActivity implements
                 .replace(R.id.rating_fragment_container,ratingDeatilFragment)
                 .addToBackStack(null)
                 .commit();
-
+        actionMenuItem.collapseActionView();
     }
 
     @Override

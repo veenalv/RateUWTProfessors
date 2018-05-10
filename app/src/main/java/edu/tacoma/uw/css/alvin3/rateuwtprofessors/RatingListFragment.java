@@ -23,6 +23,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
@@ -33,13 +36,15 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class RatingListFragment extends Fragment {
+public class RatingListFragment extends Fragment{
 
-    private List<Rating> mRatingList;
+    protected List<Rating> mRatingList;
 
     //Create a member variable for the RecyclerView so that we can access it in the
     //thread to load the data.
-    private RecyclerView mRecyclerView;
+    protected RecyclerView mRecyclerView;
+
+    protected String filter = "";
 
     private static final String RATING_URL =
             "http://cssgate.insttech.washington.edu/~caih6/professorList.php?cmd=ratings";
@@ -93,6 +98,20 @@ public class RatingListFragment extends Fragment {
         return view;
     }
 
+    protected void setAdapter(List<Rating> list) {
+        Collections.sort(list, new CompareRatings());
+        mRecyclerView.setAdapter(new MyRatingRecyclerViewAdapter(list, mListener));
+    }
+
+    protected List<Rating> filter(String newText) {
+        List<Rating> localRatingList = new ArrayList<Rating>();
+        for (int i = 0; i < mRatingList.size(); i++) {
+            if (mRatingList.get(i).getProfessorName().toLowerCase().contains(newText.toLowerCase())) {
+                localRatingList.add(mRatingList.get(i));
+            }
+        }
+        return localRatingList;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -157,7 +176,6 @@ public class RatingListFragment extends Fragment {
             return response;
         }
 
-
         @Override
         protected void onPostExecute(String result) {
             Log.i(TAG,"onPostExecute");
@@ -177,8 +195,15 @@ public class RatingListFragment extends Fragment {
 
             //Everything is good, show the list of rating
             if(!mRatingList.isEmpty()){
-                mRecyclerView.setAdapter(new MyRatingRecyclerViewAdapter(mRatingList, mListener));
+                setAdapter(mRatingList);
             }
+        }
+    }
+
+    private class CompareRatings implements Comparator<Rating> {
+        @Override
+        public int compare(Rating o1, Rating o2) {
+            return o1.getProfessorName().compareTo(o2.getProfessorName());
         }
     }
 }
