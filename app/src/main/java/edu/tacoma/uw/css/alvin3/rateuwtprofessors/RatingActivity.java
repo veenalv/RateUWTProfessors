@@ -1,3 +1,6 @@
+/**
+ * TCSS 450 - Spring 2018 Team 8.
+ */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.app.SearchManager;
@@ -13,6 +16,9 @@ import android.widget.Toast;
 
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
 
+/**
+ * Create a parent activity of list fragment.
+ */
 public class RatingActivity extends AppCompatActivity implements
         RatingListFragment.OnListFragmentInteractionListener,
         RatingDeatilFragment.OnFragmentInteractionListener{
@@ -28,9 +34,12 @@ public class RatingActivity extends AppCompatActivity implements
                     .commit();
         }
 
-
     }
 
+    /**
+     * Override OnListfragmentInteraction class's methoid.
+     * @param item rating object
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -1,3 +1,6 @@
+/**
+ * TCSS 450 - Spring 2018 Team 8.
+ */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating;
 
 import org.json.JSONArray;
@@ -6,105 +9,178 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Make the Rating class implement Serializable. This allows us to the pass
  * the object as a parameter.
  */
 public class Rating implements Serializable{
+    /** The name of Professor, FirstName,LastName.*/
     public static final String NAME ="Name";
-    public static final String OVRALLQUALITY ="OvrallQuality";
-    public static final String DIFFICUTY ="Difficuty";
-    public static final String TEACHINGABLITY ="TeachingAblity";
-    public static final String HELPOFFERRED="HelpOfferred";
+
+    /** The overall quality of professor. */
+    public static final String OVERALLQUALITY ="OverallQuality";
+
+    /** The difficulty of professor. */
+    public static final String DIFFICULTY ="Difficulty";
+
+    /**The teaching ability. */
+    public static final String TEACHINGABILITY ="TeachingAbility";
+
+    /**The help offered of professor. */
+    public static final String HELPOFFERED="HelpOffered";
+
+    /** The written review of professor.*/
     public static final String WRITTENREVIEW="WrittenReview";
+
+    /** The email address of professor. */
     public static final String EMAILADDRESS="EmailAddress";
+
+    /**The information about this professor. */
     private String mProfessorName, mWrittenReview, mEmailAddress;
-           ;
-    private int  mOverallQuality, mDifficuty,mTeachingAblity,mHelpOfferred;
+
+    /** The information about this professor.*/
+    private int  mOverallQuality, mDifficulty,mTeachingAbility,mHelpOffered;
 
     /**
      * Create a constructor.
-     * @param mProfessorName
-     * @param mWrittenReview
-     * @param mOverallQuality
-     * @param mDifficuty
-     * @param mTeachingAblity
-     * @param mHelpOfferred
+     * @param mProfessorName Professor name.
+     * @param mWrittenReview Written review of professor
+     * @param mOverallQuality Overall quality of professor
+     * @param mDifficulty Difficulty of professor
+     * @param mTeachingAbility Teaching ability of professor
+     * @param mHelpOffered Help offered of professor
      */
     public Rating(String mProfessorName, String mWrittenReview, String mEmailAddress,
-                  int mOverallQuality, int mDifficuty, int mTeachingAblity,
-                  int mHelpOfferred){
+                  int mOverallQuality, int mDifficulty, int mTeachingAbility,
+                  int mHelpOffered){
         this.mProfessorName = mProfessorName;
         this.mWrittenReview = mWrittenReview;
         this.mOverallQuality = mOverallQuality;
-        this.mDifficuty = mDifficuty;
-        this.mTeachingAblity = mTeachingAblity;
-        this.mHelpOfferred = mHelpOfferred;
+        this.mDifficulty = mDifficulty;
+        this.mTeachingAbility = mTeachingAbility;
+        this.mHelpOffered = mHelpOffered;
         this.mEmailAddress = mEmailAddress;
-
     }
 
-    public void setmProfessorName(String professorName){
+    /**
+     * Set professor's name.
+     * @param professorName the name of professor
+     */
+    public void setProfessorName(String professorName){
         mProfessorName = professorName;
     }
-    public String getmProfessorName(){
+
+    /**
+     * Get professor'name.
+     * @return professor's name
+     */
+    public String getProfessorName(){
         return mProfessorName;
     }
 
-
-    public void setmWrittenReview(String writtenReview){
+    /**
+     * Set written review
+     * @param writtenReview written review
+     */
+    public void setWrittenReview(String writtenReview){
         mWrittenReview = writtenReview;
     }
-    public String getmWrittenReview(){
+
+    /**
+     * Get written review.
+     * @return writtenReview
+     */
+    public String getWrittenReview(){
         return mWrittenReview;
     }
 
-    public void setmEmailAddress(String emailAddress){
+    /**
+     * Set professor's email address.
+     * @param emailAddress email address
+     */
+    public void setEmailAddress(String emailAddress){
         mEmailAddress=emailAddress;
     }
-    public String getmEmailAddress(){
+
+    /**
+     * Get professor's email address.
+     * @return email address
+     */
+    public String getEmailAddress(){
         return mEmailAddress;
     }
 
-    public void setmOverallQuality(int overallQuality){
+    /**
+     * Set the overall quality of professor.
+     * @param overallQuality overall quality
+     */
+    public void setOverallQuality(int overallQuality){
         mOverallQuality=overallQuality;
     }
-    public int getmOverallQuality(){
+
+    /**
+     *  Set the overall quality of professor
+     * @return overall quality
+     */
+    public int getOverallQuality(){
         return mOverallQuality;
     }
 
-
-    public void setmDifficuty(int difficuty){
-        mDifficuty=difficuty;
-    }
-    public int getmDifficuty(){
-        return mDifficuty;
-    }
-
-
-    public void setmTeachingablity(int teachingablity){
-        mTeachingAblity = teachingablity;
-    }
-    public int getmTeachingAblity(){
-        return mTeachingAblity;
+    /**
+     * Set the difficulty of professor.
+     * @param difficulty difficulty
+     */
+    public void setDifficulty(int difficulty){
+        mDifficulty=difficulty;
     }
 
-
-    public void setmHelpofferred(int helpofferred){
-        mHelpOfferred = helpofferred;
+    /**
+     * Get the difficulty of professor.
+     * @return difficulty
+     */
+    public int getDifficulty(){
+        return mDifficulty;
     }
-    public int getmHelpOfferred(){
-        return mHelpOfferred;
+
+    /**
+     * Set teaching ability of professor.
+     * @param teachingability teaching ability
+     */
+    public void setTeachingability(int teachingability){
+        mTeachingAbility = teachingability;
+    }
+
+    /**
+     * Get teaching ability of professor.
+     * @return teaching ability
+     */
+    public int getTeachingAbility(){
+        return mTeachingAbility;
+    }
+
+
+    /**
+     * Set help Offered of professor.
+     * @param helpOffered help offered
+     */
+    public void setHelpOffered(int helpOffered){
+        mHelpOffered = helpOffered;
+    }
+
+    /**
+     * Get help Offered of professor.
+     * @return help offered
+     */
+    public int getHelpOffered(){
+        return mHelpOffered;
     }
 
     /**
      * Add a method to parse json String.
-     * @param ratingJSON
-     * @return
+     * @param ratingJSON the list of rating in json format.
+     * @return A list of rating
      * @throws JSONException
      */
     public static List<Rating> parseRatingJSON(String ratingJSON) throws JSONException{
@@ -115,9 +191,9 @@ public class Rating implements Serializable{
             for(int i = 0; i< arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
                 Rating rating = new Rating(obj.getString(NAME),obj.getString(WRITTENREVIEW),
-                        obj.getString(EMAILADDRESS), obj.getInt(OVRALLQUALITY),
-                        obj.getInt(DIFFICUTY), obj.getInt(TEACHINGABLITY),
-                        obj.getInt(HELPOFFERRED));
+                        obj.getString(EMAILADDRESS), obj.getInt(OVERALLQUALITY),
+                        obj.getInt(DIFFICULTY), obj.getInt(TEACHINGABILITY),
+                        obj.getInt(HELPOFFERED));
 
                 ratingList.add(rating);
             }

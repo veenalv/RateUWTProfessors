@@ -1,10 +1,12 @@
+/**
+ * TCSS 450 - Spring 2018 Team 8.
+ */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +24,10 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
 public class RatingDeatilFragment extends Fragment {
     public final static String RATING_ITEM_SELECTED ="rating_selected";
     private TextView mProfessorNameTextView;
-    private TextView mQvrallQualityTextView;
-    private TextView mDifficutyTextView;
-    private TextView mTeachingAblityTextView;
-    private TextView mHelpOfferredTextView;
+    private TextView mOverallQualityTextView;
+    private TextView mDifficultyTextView;
+    private TextView mTeachingAbilityTextView;
+    private TextView mHelpOfferedTextView;
     private TextView mWrittenReviewTextView;
     //private TextView mEmailAddressTextView;
 
@@ -44,16 +46,16 @@ public class RatingDeatilFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rating_deatil, container, false);
         mProfessorNameTextView = (TextView) view.findViewById(R.id.rating_professor_name);
-        mQvrallQualityTextView = (TextView) view.findViewById(R.id.rating_overall_quality);
-        mDifficutyTextView = (TextView) view.findViewById(R.id.rating_difficuty);
-        mTeachingAblityTextView = (TextView) view.findViewById(R.id.rating_teaching_ablity);
+        mOverallQualityTextView = (TextView) view.findViewById(R.id.rating_overall_quality);
+        mDifficultyTextView = (TextView) view.findViewById(R.id.rating_difficuty);
+        mTeachingAbilityTextView = (TextView) view.findViewById(R.id.rating_teaching_ablity);
         mWrittenReviewTextView = (TextView) view.findViewById(R.id.rating_written_review);
-        mHelpOfferredTextView = (TextView) view.findViewById(R.id.rating_help_offerred);
+        mHelpOfferedTextView = (TextView) view.findViewById(R.id.rating_help_offerred);
         //mEmailAddressTextView = (TextView) view.findViewById(R.id.rating_professor_eamiladdress);
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -88,19 +90,22 @@ public class RatingDeatilFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
+    /**
+     * Update the view.
+     * @param rating rating object
+     */
     public void updateView(Rating rating){
         if(rating != null){
-            mProfessorNameTextView.setText("                "+rating.getmProfessorName());
-            mQvrallQualityTextView.setText("  Overall Quality:     "+ String.valueOf(rating.getmOverallQuality()));
-            mDifficutyTextView.setText("  Difficulty:               "+String.valueOf(rating.getmDifficuty()));
-            mTeachingAblityTextView.setText("  Teaching Ablity:    "+String.valueOf(rating.getmTeachingAblity()));
-            mWrittenReviewTextView.setText("  Written Review:     "+rating.getmWrittenReview());
-            mHelpOfferredTextView.setText("  Help Offerred:        "+String.valueOf(rating.getmHelpOfferred()));
-            // mEmailAddressTextView.setText(rating.getmEmailAddress());
+            mProfessorNameTextView.setText("                "+rating.getProfessorName());
+            mOverallQualityTextView.setText("  Overall Quality:     "+ String.valueOf(rating.getOverallQuality()));
+            mDifficultyTextView.setText("  Difficulty:               "+String.valueOf(rating.getDifficulty()));
+            mTeachingAbilityTextView.setText("  Teaching Ability:    "+String.valueOf(rating.getTeachingAbility()));
+            mWrittenReviewTextView.setText("  Written Review:     "+rating.getWrittenReview());
+            mHelpOfferedTextView.setText("  Help Offered:        "+String.valueOf(rating.getHelpOffered()));
+            // mEmailAddressTextView.setText(rating.getEmailAddress());
 
 
         }
