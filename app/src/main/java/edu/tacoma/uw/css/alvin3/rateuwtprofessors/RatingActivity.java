@@ -84,7 +84,7 @@ public class RatingActivity extends AppCompatActivity implements
         // Any other things you have to do when creating the options menu...
         searchView.setSearchableInfo(searchManager.
                 getSearchableInfo(getComponentName()));
-        searchView.setSubmitButtonEnabled(true);
+//        searchView.setSubmitButtonEnabled(true);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -117,8 +117,8 @@ public class RatingActivity extends AppCompatActivity implements
 //            Toast.makeText(this, "SEARCH CLIOCKED", Toast.LENGTH_SHORT)
 //                    .show();
         } else if (id == R.id.action_settings) {
-//            Toast.makeText(this, "SSETTINGS CLICKED", Toast.LENGTH_SHORT)
-//                    .show();
+            Toast.makeText(this, "SETTINGS CLICKED", Toast.LENGTH_SHORT)
+                    .show();
         }
 
         return super.onOptionsItemSelected(item);
