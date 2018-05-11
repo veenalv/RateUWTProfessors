@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
      * Method that is used to try registering an account.
      * @param view
      */
-    protected void register(View view) {
+    public void register(View view) {
         // Logs for debugging
         Log.d("Register: ", mEmail.getText().toString());
         Log.d("Register: ", mPassword.getText().toString());
@@ -121,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
      *
      * @param view is the view that is passed in.
      */
-    protected void finish(View view) {
+    public void finish(View view) {
         this.finish();
     }
 

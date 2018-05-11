@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view is the view passed in when the button is clicked.
      */
-    protected void launchLogin(View view) {
+    public void launchLogin(View view) {
         Intent loginIntent = new Intent(this, LoginActivity.class);
         startActivity(loginIntent);
     }
