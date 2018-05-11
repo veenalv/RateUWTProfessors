@@ -13,8 +13,8 @@ local.properties
 # Signing files
 .signing/
 
-.bin
-.lock
+*.bin
+*.lock
 # User-specific configurations
 .idea/libraries/
 .idea/workspace.xml
