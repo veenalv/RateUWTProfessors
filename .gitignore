@@ -9,12 +9,12 @@ local.properties
 
 # Gradle generated files
 .gradle/
-
+*.lock
+*.bin
 # Signing files
 .signing/
 
-*.bin
-*.lock
+
 # User-specific configurations
 .idea/libraries/
 .idea/workspace.xml
