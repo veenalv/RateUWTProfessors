@@ -75,6 +75,12 @@ public class LoginActivity extends AppCompatActivity {
         // check if app is connected to the internet.
         if (networkInfo == null || !networkInfo.isConnected()) {
             notConnectedToInternet();
+        // Make sure that the email is a @uw.edu email
+        } else if (!mEmail.getText().toString().endsWith("@uw.edu")) {
+            Toast.makeText(getBaseContext(), "must use uw.edu email", Toast.LENGTH_SHORT).show();
+        // Make sure that password has a min length of 6 and max length of 15.
+        } else if (mPassword.getText().toString().length() < 6 || mPassword.getText().toString().length() > 15) {
+            Toast.makeText(this, "Password must be 6 to 15 digits long", Toast.LENGTH_SHORT).show();
         } else {
             // try signing in
             mAuth.signInWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString())
