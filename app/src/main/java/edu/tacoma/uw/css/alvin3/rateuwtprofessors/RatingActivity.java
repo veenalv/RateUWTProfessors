@@ -5,8 +5,12 @@ package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,12 +32,38 @@ public class RatingActivity extends AppCompatActivity implements
 
     private RatingListFragment rlf;
     MenuItem actionMenuItem;
+    private DrawerLayout mDrawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        //menuItem.setChecked(true);
+
+                        // close drawer when item is tapped
+                        mDrawerLayout.closeDrawers();
+                        onOptionsItemSelected(menuItem);
+                        // Add code here to update the UI based on the item selected
+                        // For example, swap UI fragments here
+
+                        return true;
+                    }
+                });
+
+        mDrawerLayout = findViewById(R.id.drawer_layout);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+
         rlf = new RatingListFragment();
         if (findViewById(R.id.rating_fragment_container)!= null) {
             getSupportFragmentManager().beginTransaction()
@@ -116,11 +146,34 @@ public class RatingActivity extends AppCompatActivity implements
         if (id == R.id.action_search) {
 //            Toast.makeText(this, "SEARCH CLIOCKED", Toast.LENGTH_SHORT)
 //                    .show();
+            return true;
         } else if (id == R.id.action_settings) {
-            Toast.makeText(this, "SETTINGS CLICKED", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "Settings coming soon", Toast.LENGTH_SHORT)
                     .show();
+            return true;
+        } else if (id == 16908332) {
+            //hard coded - 16908332 is navigation drawer, R.id.homeAsUp wasn't
+            //working for some reason
+            mDrawerLayout.openDrawer(GravityCompat.START);
+            return true;
+        } else if (id == R.id.nav_professors) {
+            if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++) {
+                    getSupportFragmentManager().popBackStack();
+                }
+            }
+            item.setChecked(true);
+            return true;
+        } else if (id == R.id.nav_savedratings) {
+            Toast.makeText(this, "Saved Ratings coming soon", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+        } else if (id == R.id.nav_settings) {
+            Toast.makeText(this, "Settings coming soon", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
         }
-
+        Log.d("RatingACTIVITY", String.valueOf(id));
         return super.onOptionsItemSelected(item);
     }
 
