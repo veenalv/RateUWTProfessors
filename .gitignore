@@ -9,8 +9,8 @@ local.properties
 
 # Gradle generated files
 .gradle/
-.lock
-.bin
+*.lock
+*.bin
 # Signing files
 .signing/
 
