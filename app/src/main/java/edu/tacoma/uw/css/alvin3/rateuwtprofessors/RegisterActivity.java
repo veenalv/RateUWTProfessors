@@ -109,15 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a toast to the user.
                                 Log.w("Registration: ", "createUserWithEmail:failure", task.getException());
-                                // If account is already registered, notify the user that.
-                                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                    Toast.makeText(getBaseContext(), "Account is already registered",
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    // display generic fail toast.
-                                    Toast.makeText(getBaseContext(), "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                }
+                                Toast.makeText(getBaseContext(), "" + task.getException().getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             }
                         }
                     });
