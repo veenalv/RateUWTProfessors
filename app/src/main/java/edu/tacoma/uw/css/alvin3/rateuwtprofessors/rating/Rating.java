@@ -107,7 +107,7 @@ public class Rating implements Serializable{
      * @return professor's name
      */
     public String getProfessorName(){
-        return mFirstName + mLastName;
+        return mLastName + ", " + mFirstName;
     }
 
     /**

@@ -28,7 +28,7 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
  */
 public class RatingActivity extends AppCompatActivity implements
         RatingListFragment.OnListFragmentInteractionListener,
-        RatingDeatilFragment.OnFragmentInteractionListener{
+        RatingDeatilFragment.OnListFragmentInteractionListener{
 
     private RatingListFragment rlf;
     MenuItem actionMenuItem;
@@ -181,7 +181,7 @@ public class RatingActivity extends AppCompatActivity implements
     public void onListFragmentInteraction(Rating item) {
         RatingDeatilFragment ratingDeatilFragment = new RatingDeatilFragment();
         Bundle args = new Bundle();
-        args.putSerializable(RatingDeatilFragment.RATING_ITEM_SELECTED,item);
+        //args.putSerializable(RatingDeatilFragment.RATING_ITEM_SELECTED,item);
         ratingDeatilFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.rating_fragment_container,ratingDeatilFragment)
@@ -190,8 +190,5 @@ public class RatingActivity extends AppCompatActivity implements
         actionMenuItem.collapseActionView();
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
-    }
 }
