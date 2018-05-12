@@ -1,7 +1,14 @@
 /**
+ * Represents an Professor object. This class is used to display
+ * a list of professors on our HomeActivity. Professors will be displayed
+ * by Last Name, First Name.
+ *
  * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
  */
-package edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating;
+package edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,10 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Make the Rating class implement Serializable. This allows us to the pass
+ * Make the Professor class implement Serializable. This allows us to the pass
  * the object as a parameter.
  */
-public class Rating implements Serializable{
+public class Professor implements Serializable{
+
     /** The name of Professor, FirstName*/
     public static final String FIRSTNAME ="FirstName";
 
@@ -58,21 +66,15 @@ public class Rating implements Serializable{
      * param mTeachingAbility Teaching ability of professor
      * param mHelpOffered Help offered of professor
      */
-    public Rating(String mFirstName, String mLastName, String mNetID){
+    public Professor(String mFirstName, String mLastName, String mNetID){
         this.mFirstName = mFirstName;
         this.mLastName = mLastName;
         this.mNetID = mNetID;
-//        this.mWrittenReview = mWrittenReview;
-//        this.mOverallQuality = mOverallQuality;
-//        this.mDifficulty = mDifficulty;
-//        this.mTeachingAbility = mTeachingAbility;
-//        this.mHelpOffered = mHelpOffered;
-//        this.mEmailAddress = mEmailAddress;
     }
 
     /**
      * Set professor's first name.
-     * @param professorName the name of professor
+     * @param professorName the first name of professor
      */
     public void setFirstName(String professorName){
         mFirstName = professorName;
@@ -80,7 +82,7 @@ public class Rating implements Serializable{
 
     /**
      * Set professor's last name.
-     * @param professorName the name of professor
+     * @param professorName the last name of professor
      */
     public void setLastName(String professorName){
         mLastName = professorName;
@@ -88,7 +90,7 @@ public class Rating implements Serializable{
 
     /**
      * Get professor' first name.
-     * @return professor's name
+     * @return professor's first name
      */
     public String getFirstName(){
         return mFirstName;
@@ -96,7 +98,7 @@ public class Rating implements Serializable{
 
     /**
      * Get professor' last name.
-     * @return professor's name
+     * @return professor's last name
      */
     public String getLastName(){
         return mLastName;
@@ -111,6 +113,10 @@ public class Rating implements Serializable{
     }
 
 
+    /**
+     * Get professor' Net Id.
+     * @return professor's Net Id
+     */
     public String getNetid(){
         return mNetID;
     }
@@ -125,7 +131,7 @@ public class Rating implements Serializable{
     }
 
     /**
-     *  Set the overall quality of professor
+     *  Get the overall quality of professor
      * @return overall quality
      */
     public int getOverallQuality(){
@@ -134,7 +140,7 @@ public class Rating implements Serializable{
 
     /**
      * Set the difficulty of professor.
-     * @param difficulty difficulty
+     * @param difficulty difficulty of professor
      */
     public void setDifficulty(int difficulty){
         mDifficulty=difficulty;
@@ -142,7 +148,7 @@ public class Rating implements Serializable{
 
     /**
      * Get the difficulty of professor.
-     * @return difficulty
+     * @return difficulty difficulty of professor
      */
     public int getDifficulty(){
         return mDifficulty;
@@ -150,7 +156,7 @@ public class Rating implements Serializable{
 
     /**
      * Set teaching ability of professor.
-     * @param teachingability teaching ability
+     * @param teachingability teaching ability of professor
      */
     public void setTeachingability(int teachingability){
         mTeachingAbility = teachingability;
@@ -158,7 +164,7 @@ public class Rating implements Serializable{
 
     /**
      * Get teaching ability of professor.
-     * @return teaching ability
+     * @return teaching ability of professor
      */
     public int getTeachingAbility(){
         return mTeachingAbility;
@@ -167,7 +173,7 @@ public class Rating implements Serializable{
 
     /**
      * Set help Offered of professor.
-     * @param helpOffered help offered
+     * @param helpOffered help offered of professor
      */
     public void setHelpOffered(int helpOffered){
         mHelpOffered = helpOffered;
@@ -175,7 +181,7 @@ public class Rating implements Serializable{
 
     /**
      * Get help Offered of professor.
-     * @return help offered
+     * @return help offered of professor
      */
     public int getHelpOffered(){
         return mHelpOffered;
@@ -187,18 +193,14 @@ public class Rating implements Serializable{
      * @return A list of rating
      * @throws JSONException
      */
-    public static List<Rating> parseRatingJSON(String ratingJSON) throws JSONException{
-        List<Rating> ratingList = new ArrayList<Rating>();
+    public static List<Professor> parseRatingJSON(String ratingJSON) throws JSONException{
+        List<Professor> ratingList = new ArrayList<Professor>();
         if(ratingJSON !=null){
             JSONArray arr = new JSONArray(ratingJSON);
 
             for(int i = 0; i< arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
-//                Rating rating = new Rating(obj.getString(NAME),obj.getString(WRITTENREVIEW),
-////                        obj.getString(EMAILADDRESS), obj.getInt(OVERALLQUALITY),
-////                        obj.getInt(DIFFICULTY), obj.getInt(TEACHINGABILITY),
-////                        obj.getInt(HELPOFFERED));
-                Rating rating = new Rating(obj.getString(FIRSTNAME),obj.getString(LASTNAME),
+                Professor rating = new Professor(obj.getString(FIRSTNAME),obj.getString(LASTNAME),
                         obj.getString(NETID));
 
                 ratingList.add(rating);

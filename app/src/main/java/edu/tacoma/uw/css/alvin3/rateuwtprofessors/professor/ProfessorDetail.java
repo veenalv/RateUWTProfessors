@@ -1,7 +1,15 @@
 /**
+ * Represents an ProfessorDetail object. This class is used to display
+ * the details of a Professor once a user clicks on a Professor.
+ * This ProfessorDetail object will display a list of ratings associated
+ * with the appropriate Professor.
+ *
  * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
  */
-package edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating;
+package edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Make the Rating class implement Serializable. This allows us to the pass
+ * Make the Professor class implement Serializable. This allows us to the pass
  * the object as a parameter.
  */
-public class RatingDetail implements Serializable{
+public class ProfessorDetail implements Serializable{
 
     /** The overall quality of professor. */
     public static final String OVERALLQUALITY ="OverallQuality";
@@ -29,28 +37,33 @@ public class RatingDetail implements Serializable{
     /**The help offered of professor. */
     public static final String HELPOFFERED="HelpOffered";
 
-    /** The written review of professor.*/
+    /**The written review of professor.*/
     public static final String REVIEW="Review";
 
+    /**The up votes of professor.*/
     public static final String UPVOTES = "Upvotes";
 
+    /**The down votes of professor.*/
     public static final String DOWNVOTES = "Downvotes";
 
+    /**The review of professor.*/
     private String mReview;
     /** The information about this professor.*/
     private int  mOverallQuality, mDifficulty,mTeachingAbility, mHelpOffered, mDownvotes, mUpvotes;
 
     /**
      * Create a constructor.
-     * param mProfessorName Professor name.
-     * param mWrittenReview Written review of professor
+     *
      * param mOverallQuality Overall quality of professor
      * param mDifficulty Difficulty of professor
      * param mTeachingAbility Teaching ability of professor
      * param mHelpOffered Help offered of professor
+     * param mReview Review of professor
+     * param mUpvotes Up votes of professor
+     * param mDownvotes Douwn votes of professor
      */
-    public RatingDetail(int mOverallQuality, int mDifficulty, int mTeachingAbility,
-                        int mHelpOffered, String mReview, int mUpvotes, int mDownvotes){
+    public ProfessorDetail(int mOverallQuality, int mDifficulty, int mTeachingAbility,
+                           int mHelpOffered, String mReview, int mUpvotes, int mDownvotes){
         this.mOverallQuality = mOverallQuality;
         this.mDifficulty = mDifficulty;
         this.mTeachingAbility = mTeachingAbility;
@@ -62,15 +75,15 @@ public class RatingDetail implements Serializable{
 
     /**
      * Set the overall quality of professor.
-     * @param overallQuality overall quality
+     * @param overallQuality overall quality of professor
      */
     public void setOverallQuality(int overallQuality){
         mOverallQuality=overallQuality;
     }
 
     /**
-     *  Set the overall quality of professor
-     * @return overall quality
+     * Get the overall quality of professor
+     * @return overall quality of professor
      */
     public int getOverallQuality(){
         return mOverallQuality;
@@ -78,7 +91,7 @@ public class RatingDetail implements Serializable{
 
     /**
      * Set the difficulty of professor.
-     * @param difficulty difficulty
+     * @param difficulty difficulty of professor
      */
     public void setDifficulty(int difficulty){
         mDifficulty=difficulty;
@@ -86,7 +99,7 @@ public class RatingDetail implements Serializable{
 
     /**
      * Get the difficulty of professor.
-     * @return difficulty
+     * @return difficulty of professor
      */
     public int getDifficulty(){
         return mDifficulty;
@@ -94,7 +107,7 @@ public class RatingDetail implements Serializable{
 
     /**
      * Set teaching ability of professor.
-     * @param teachingability teaching ability
+     * @param teachingability teaching ability of professoer
      */
     public void setTeachingability(int teachingability){
         mTeachingAbility = teachingability;
@@ -102,7 +115,7 @@ public class RatingDetail implements Serializable{
 
     /**
      * Get teaching ability of professor.
-     * @return teaching ability
+     * @return teaching ability of professor
      */
     public int getTeachingAbility(){
         return mTeachingAbility;
@@ -111,7 +124,7 @@ public class RatingDetail implements Serializable{
 
     /**
      * Set help Offered of professor.
-     * @param helpOffered help offered
+     * @param helpOffered help offered of professor
      */
     public void setHelpOffered(int helpOffered){
         mHelpOffered = helpOffered;
@@ -119,39 +132,57 @@ public class RatingDetail implements Serializable{
 
     /**
      * Get help Offered of professor.
-     * @return help offered
+     * @return help offered of professor
      */
     public int getHelpOffered(){
         return mHelpOffered;
     }
 
+    /**
+     * Set up vote of professor.
+     * @return up vote of professor
+     */
     public void setUpvote(int upvotes){
         mUpvotes=upvotes;
     }
 
-
+    /**
+     * Get up vote of professor.
+     * @return up vote of professor
+     */
     public int getUpvote(){
         return mUpvotes;
     }
 
-
+    /**
+     * Set down vote of professor.
+     * @return down vote of professor
+     */
     public void setDownvote(int downvotes){
         mDownvotes=downvotes;
     }
 
 
+    /**
+     * Get down vote of professor.
+     * @return down vote of professor
+     */
     public int getDownvote(){
         return mDownvotes;
     }
 
 
+    /**
+     * Set Review of professor.
+     * @return review of professor
+     */
     public void setReview(String review){
         mReview=review;
     }
 
     /**
-     *  Set the overall quality of professor
-     * @return overall quality
+     * Get the review of professor
+     * @return review of professor
      */
     public String getReview(){
         return mReview;
@@ -163,19 +194,19 @@ public class RatingDetail implements Serializable{
      * @return A list of rating
      * @throws JSONException
      */
-    public static List<RatingDetail> parseRatingJSON(String ratingJSON) throws JSONException{
-        List<RatingDetail> ratingList = new ArrayList<RatingDetail>();
+    public static List<ProfessorDetail> parseRatingJSON(String ratingJSON) throws JSONException{
+        List<ProfessorDetail> ratingList = new ArrayList<ProfessorDetail>();
         if(ratingJSON !=null){
             JSONArray arr = new JSONArray(ratingJSON);
 
             for(int i = 0; i< arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
-                RatingDetail ratingDetail = new RatingDetail(obj.getInt(OVERALLQUALITY),obj.getInt(DIFFICULTY),
+                ProfessorDetail professorDetail = new ProfessorDetail(obj.getInt(OVERALLQUALITY),obj.getInt(DIFFICULTY),
                         obj.getInt(TEACHINGABILITY), obj.getInt(HELPOFFERED),
                         obj.getString(REVIEW), obj.getInt(UPVOTES),
                         obj.getInt(DOWNVOTES));
 
-                ratingList.add(ratingDetail);
+                ratingList.add(professorDetail);
             }
         }
         return ratingList;

@@ -1,21 +1,19 @@
 /**
- * TCSS 450 - Spring 2018 Team 8. Alvin, Hui, and Maksim.
+ * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
  */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 /**
  * MainActivity is the first activity that is shown when the app is opened. It's the splash
  * screen for the app. To continue, the user must click on the button
- *
- * @author Maksim
- * @auther Alvin
- * @auther Hui
  */
 public class MainActivity extends AppCompatActivity {
 

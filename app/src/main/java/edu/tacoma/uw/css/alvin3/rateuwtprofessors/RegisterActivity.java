@@ -1,5 +1,14 @@
 /**
- * TCSS 450 - Spring 2018 Team 8. Alvin, Hui, and Maksim.
+ * TCSS 450 - Spring 2018 Team 8.
+ * RegisterActivity is the activity that is used when a user wants to register an account.
+ * In order to register an account, the app must be connected to the internet, the email must
+ * end with '@uw.edu', the password must be of length 6 - 15, and the checkbox must be enabled.
+ * After a successful registration, a toast will be shown that mentions that an email verification
+ * has been sent. The email verification must be completed before the user can sign in.
+ *
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
  */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
@@ -23,20 +32,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
-/**
- * RegisterActivity is the activity that is used when a user wants to register an account.
- * In order to register an account, the app must be connected to the internet, the email must
- * end with '@uw.edu', the password must be of length 6 - 15, and the checkbox must be enabled.
- * After a successful registration, a toast will be shown that mentions that an email verification
- * has been sent. The email verification must be completed before the user can sign in.
- *
- * @author Maksim
- * @auther Alvin
- * @auther Hui
- */
 public class RegisterActivity extends AppCompatActivity {
     /** The email used to register an account. */
     private EditText mEmail;

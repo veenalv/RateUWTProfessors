@@ -1,5 +1,8 @@
 /**
  * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
  */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
@@ -23,12 +26,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.ProfessorDetail;
 
 /**
  * A fragment representing a list of Items.
@@ -36,18 +36,30 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class RatingListFragment extends Fragment{
+public class ProfessorDetailFragment extends Fragment{
 
-    protected List<Rating> mRatingList;
+    /**
+     * List of ProfessorDetails. NOTE: This could later be just one Object.
+     */
+    protected List<ProfessorDetail> mRatingList;
 
-    //Create a member variable for the RecyclerView so that we can access it in the
-    //thread to load the data.
+    /**
+     * Create a member variable for the RecyclerView so that we can access it in the
+     * thread to load the data.
+     */
     protected RecyclerView mRecyclerView;
 
-    protected String filter = "";
+    /**
+     * The NetID of the Professor we want details of.
+     */
+    private String mNetId;
 
+    /**
+     * The initial URL, sans the NetID of the Professor we want
+     * details of.
+     */
     private static final String RATING_URL =
-            "http://tcssalvin.000webhostapp.com/android/list.php?cmd=professors";
+            "http://tcssalvin.000webhostapp.com/android/list.php?cmd=";
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
@@ -57,11 +69,16 @@ public class RatingListFragment extends Fragment{
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public RatingListFragment() {
+    public ProfessorDetailFragment() {
     }
 
-    public static RatingListFragment newInstance(int columnCount) {
-        RatingListFragment fragment = new RatingListFragment();
+    /**
+     * Create a new instance of the ProfessorDetailFragment.
+     * @param columnCount the column count
+     * @return the new fragment
+     */
+    public static ProfessorDetailFragment newInstance(int columnCount) {
+        ProfessorDetailFragment fragment = new ProfessorDetailFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -81,8 +98,9 @@ public class RatingListFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rating_list, container, false);
-
-        // Set the adapter
+        //receive netID here
+        mNetId =getArguments().getString("netid");
+        // Set the adapter, or update the RecyclerView.
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             mRecyclerView = (RecyclerView) view;
@@ -91,26 +109,20 @@ public class RatingListFragment extends Fragment{
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            // recyclerView.setAdapter(new MyRatingRecyclerViewAdapter(Rating.ITEMS, mListener));
-            RatingAsyncTask ratingAsynTask = new RatingAsyncTask();
-            ratingAsynTask.execute(new String[]{RATING_URL});
+            // recyclerView.setAdapter(new MyProfessorRecyclerViewAdapter(Professor.ITEMS, mListener));
+            ProfessorAsyncTask ratingAsynTask = new ProfessorAsyncTask();
+            //Fetch the JSON object for our ProfessorDetails.
+            ratingAsynTask.execute(new String[]{RATING_URL + mNetId});
         }
         return view;
     }
 
-    protected void setAdapter(List<Rating> list) {
-        Collections.sort(list, new CompareRatings());
-        mRecyclerView.setAdapter(new MyRatingRecyclerViewAdapter(list, mListener));
-    }
-
-    protected List<Rating> filter(String newText) {
-        List<Rating> localRatingList = new ArrayList<Rating>();
-        for (int i = 0; i < mRatingList.size(); i++) {
-            if (mRatingList.get(i).getProfessorName().toLowerCase().contains(newText.toLowerCase())) {
-                localRatingList.add(mRatingList.get(i));
-            }
-        }
-        return localRatingList;
+    /**
+     * Update the adapter or the view.
+     * @param list the list of ProfessorDetail
+     */
+    protected void setAdapter(List<ProfessorDetail> list) {
+        mRecyclerView.setAdapter(new MyProfessorDetailRecyclerViewAdapter(list, mListener));
     }
 
     @Override
@@ -141,14 +153,14 @@ public class RatingListFragment extends Fragment{
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Rating item);
+        void onListFragmentInteraction(ProfessorDetail item);
     }
 
     /**
      * Create a private class to setup asynchronous loading of the data.
      */
-    private class RatingAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String TAG = "RatingListFragment";
+    private class ProfessorAsyncTask extends AsyncTask<String, Void, String> {
+        private static final String TAG = "ProfessorListFragment";
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -185,10 +197,11 @@ public class RatingListFragment extends Fragment{
                 return;
             }
             try{
-                mRatingList = Rating.parseRatingJSON(result);
+                mRatingList = ProfessorDetail.parseRatingJSON(result);
             }
             catch(JSONException e){
-                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(),
+                //Show a message here if the Professor has no ratings.
+                Toast.makeText(getActivity().getApplicationContext(), "Professor has no ratings!",
                         Toast.LENGTH_LONG).show();
                 return;
             }
@@ -197,13 +210,6 @@ public class RatingListFragment extends Fragment{
             if(!mRatingList.isEmpty()){
                 setAdapter(mRatingList);
             }
-        }
-    }
-
-    private class CompareRatings implements Comparator<Rating> {
-        @Override
-        public int compare(Rating o1, Rating o2) {
-            return o1.getProfessorName().compareTo(o2.getProfessorName());
         }
     }
 }

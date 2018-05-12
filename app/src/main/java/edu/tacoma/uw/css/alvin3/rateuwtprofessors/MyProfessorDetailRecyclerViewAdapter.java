@@ -1,3 +1,10 @@
+/**
+ * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
+ */
+
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.support.v7.widget.RecyclerView;
@@ -6,22 +13,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.RatingDeatilFragment.OnListFragmentInteractionListener;
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.RatingDetail;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.ProfessorDetailFragment.OnListFragmentInteractionListener;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.ProfessorDetail;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link RatingDetail} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link ProfessorDetail} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
-public class MyRatingDetailRecyclerViewAdapter extends RecyclerView.Adapter<MyRatingDetailRecyclerViewAdapter.ViewHolder> {
+public class MyProfessorDetailRecyclerViewAdapter extends RecyclerView.Adapter<MyProfessorDetailRecyclerViewAdapter.ViewHolder> {
 
-    private final List<RatingDetail> mValues;
+    /**
+     * List of ProfessorDetails.
+     */
+    private final List<ProfessorDetail> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyRatingDetailRecyclerViewAdapter(List<RatingDetail> items, OnListFragmentInteractionListener listener) {
+    /**
+     * Constructor for the view adapter which updates the view that the user sees
+     * everytime setAdapter() is called.
+     * @param items
+     * @param listener
+     */
+    public MyProfessorDetailRecyclerViewAdapter(List<ProfessorDetail> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -46,6 +61,8 @@ public class MyRatingDetailRecyclerViewAdapter extends RecyclerView.Adapter<MyRa
                         + "/" + mValues.get(position).getDownvote()
         );
 
+        //COMMENTED OUT here to disable the user from being able to click on
+        //stuff in ProfessorDetail view.
 //        holder.mView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -63,11 +80,14 @@ public class MyRatingDetailRecyclerViewAdapter extends RecyclerView.Adapter<MyRa
         return mValues.size();
     }
 
+    /**
+     * Inner class which is the view holder. Displays the content.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mRatingDetailView;
         public final TextView mContentView;
-        public RatingDetail mItem;
+        public ProfessorDetail mItem;
 
         public ViewHolder(View view) {
             super(view);

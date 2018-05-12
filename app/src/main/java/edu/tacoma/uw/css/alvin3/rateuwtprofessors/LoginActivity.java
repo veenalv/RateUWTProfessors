@@ -1,5 +1,12 @@
 /**
+ * This activity handles the login for the user.
+ * Users can elect to register or sign in using
+ * their email and password.
+ *
  * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
  */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
@@ -15,7 +22,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,8 +29,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
 /**
@@ -32,9 +36,6 @@ import com.google.firebase.auth.FirebaseUser;
  * sign into the app. The user can click to go to the register activity,
  * or click to sign in.
  *
- * @author Maksim
- * @auther Alvin
- * @auther Hui
  */
 public class LoginActivity extends AppCompatActivity {
 
@@ -110,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
      * method that is used to transfer the user to the rating activity.
      */
     public void goToRatingActivity() {
-        Intent ratingIntent = new Intent(this, RatingActivity.class);
+        Intent ratingIntent = new Intent(this, HomeActivity.class);
         startActivity(ratingIntent);
     }
 

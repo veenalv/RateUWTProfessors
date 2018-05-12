@@ -1,3 +1,10 @@
+/**
+ * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
+ */
+
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.support.v7.widget.RecyclerView;
@@ -6,21 +13,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.RatingListFragment.OnListFragmentInteractionListener;
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.ProfessorListFragment.OnListFragmentInteractionListener;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.Professor;
+
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Rating} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Professor} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
-public class MyRatingRecyclerViewAdapter extends RecyclerView.Adapter<MyRatingRecyclerViewAdapter.ViewHolder> {
+public class MyProfessorRecyclerViewAdapter extends RecyclerView.Adapter<MyProfessorRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Rating> mValues;
+    /**
+     * List of Professors.
+     */
+    private final List<Professor> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyRatingRecyclerViewAdapter(List<Rating> items, OnListFragmentInteractionListener listener) {
+    /**
+     * Constructor for the view adapter which updates the view that the user sees
+     * everytime setAdapter() is called.
+     * @param items
+     * @param listener
+     */
+    public MyProfessorRecyclerViewAdapter(List<Professor> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -55,11 +71,14 @@ public class MyRatingRecyclerViewAdapter extends RecyclerView.Adapter<MyRatingRe
         return mValues.size();
     }
 
+    /**
+     * Inner class which is the view holder. Displays the content.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mProfessorView;
         public final TextView mContentView;
-        public Rating mItem;
+        public Professor mItem;
 
         public ViewHolder(View view) {
             super(view);
