@@ -23,12 +23,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.RatingDetail;
 
 /**
  * A fragment representing a list of Items.
@@ -38,16 +35,16 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
  */
 public class RatingDeatilFragment extends Fragment{
 
-    protected List<Rating> mRatingList;
+    protected List<RatingDetail> mRatingList;
 
     //Create a member variable for the RecyclerView so that we can access it in the
     //thread to load the data.
     protected RecyclerView mRecyclerView;
 
-    protected String filter = "";
+    private String mNetId;
 
     private static final String RATING_URL =
-            "http://tcssalvin.000webhostapp.com/android/list.php?cmd=professors";
+            "http://tcssalvin.000webhostapp.com/android/list.php?cmd=";
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
@@ -81,7 +78,8 @@ public class RatingDeatilFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rating_list, container, false);
-
+        //receive netID here
+        mNetId =getArguments().getString("netid");
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -93,24 +91,13 @@ public class RatingDeatilFragment extends Fragment{
             }
             // recyclerView.setAdapter(new MyRatingRecyclerViewAdapter(Rating.ITEMS, mListener));
             RatingAsyncTask ratingAsynTask = new RatingAsyncTask();
-            ratingAsynTask.execute(new String[]{RATING_URL});
+            ratingAsynTask.execute(new String[]{RATING_URL + mNetId});
         }
         return view;
     }
 
-    protected void setAdapter(List<Rating> list) {
-        Collections.sort(list, new CompareRatings());
+    protected void setAdapter(List<RatingDetail> list) {
         mRecyclerView.setAdapter(new MyRatingDetailRecyclerViewAdapter(list, mListener));
-    }
-
-    protected List<Rating> filter(String newText) {
-        List<Rating> localRatingList = new ArrayList<Rating>();
-        for (int i = 0; i < mRatingList.size(); i++) {
-            if (mRatingList.get(i).getProfessorName().toLowerCase().contains(newText.toLowerCase())) {
-                localRatingList.add(mRatingList.get(i));
-            }
-        }
-        return localRatingList;
     }
 
     @Override
@@ -141,7 +128,7 @@ public class RatingDeatilFragment extends Fragment{
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(Rating item);
+        void onListFragmentInteraction(RatingDetail item);
     }
 
     /**
@@ -185,10 +172,12 @@ public class RatingDeatilFragment extends Fragment{
                 return;
             }
             try{
-                mRatingList = Rating.parseRatingJSON(result);
+                mRatingList = RatingDetail.parseRatingJSON(result);
             }
             catch(JSONException e){
-                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(),
+//                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(),
+//                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Professor has no ratings!",
                         Toast.LENGTH_LONG).show();
                 return;
             }
@@ -197,13 +186,6 @@ public class RatingDeatilFragment extends Fragment{
             if(!mRatingList.isEmpty()){
                 setAdapter(mRatingList);
             }
-        }
-    }
-
-    private class CompareRatings implements Comparator<Rating> {
-        @Override
-        public int compare(Rating o1, Rating o2) {
-            return o1.getProfessorName().compareTo(o2.getProfessorName());
         }
     }
 }

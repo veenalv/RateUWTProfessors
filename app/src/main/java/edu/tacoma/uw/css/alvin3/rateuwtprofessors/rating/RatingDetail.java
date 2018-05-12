@@ -15,15 +15,7 @@ import java.util.List;
  * Make the Rating class implement Serializable. This allows us to the pass
  * the object as a parameter.
  */
-public class Rating implements Serializable{
-    /** The name of Professor, FirstName*/
-    public static final String FIRSTNAME ="FirstName";
-
-    /** The name of Professor, LastName*/
-    public static final String LASTNAME ="LastName";
-
-    /** The NetID of Professor*/
-    public static final String NETID ="NetID";
+public class RatingDetail implements Serializable{
 
     /** The overall quality of professor. */
     public static final String OVERALLQUALITY ="OverallQuality";
@@ -38,16 +30,15 @@ public class Rating implements Serializable{
     public static final String HELPOFFERED="HelpOffered";
 
     /** The written review of professor.*/
-    public static final String WRITTENREVIEW="WrittenReview";
+    public static final String REVIEW="Review";
 
-    /** The email address of professor. */
-    public static final String EMAILADDRESS="EmailAddress";
+    public static final String UPVOTES = "Upvotes";
 
-    /**The information about this professor. */
-    private String mFirstName, mLastName, mNetID;
+    public static final String DOWNVOTES = "Downvotes";
 
+    private String mReview;
     /** The information about this professor.*/
-    private int  mOverallQuality, mDifficulty,mTeachingAbility,mHelpOffered;
+    private int  mOverallQuality, mDifficulty,mTeachingAbility, mHelpOffered, mDownvotes, mUpvotes;
 
     /**
      * Create a constructor.
@@ -58,63 +49,16 @@ public class Rating implements Serializable{
      * param mTeachingAbility Teaching ability of professor
      * param mHelpOffered Help offered of professor
      */
-    public Rating(String mFirstName, String mLastName, String mNetID){
-        this.mFirstName = mFirstName;
-        this.mLastName = mLastName;
-        this.mNetID = mNetID;
-//        this.mWrittenReview = mWrittenReview;
-//        this.mOverallQuality = mOverallQuality;
-//        this.mDifficulty = mDifficulty;
-//        this.mTeachingAbility = mTeachingAbility;
-//        this.mHelpOffered = mHelpOffered;
-//        this.mEmailAddress = mEmailAddress;
+    public RatingDetail(int mOverallQuality, int mDifficulty, int mTeachingAbility,
+                        int mHelpOffered, String mReview, int mUpvotes, int mDownvotes){
+        this.mOverallQuality = mOverallQuality;
+        this.mDifficulty = mDifficulty;
+        this.mTeachingAbility = mTeachingAbility;
+        this.mHelpOffered = mHelpOffered;
+        this.mReview = mReview;
+        this.mUpvotes = mUpvotes;
+        this.mDownvotes = mDownvotes;
     }
-
-    /**
-     * Set professor's first name.
-     * @param professorName the name of professor
-     */
-    public void setFirstName(String professorName){
-        mFirstName = professorName;
-    }
-
-    /**
-     * Set professor's last name.
-     * @param professorName the name of professor
-     */
-    public void setLastName(String professorName){
-        mLastName = professorName;
-    }
-
-    /**
-     * Get professor' first name.
-     * @return professor's name
-     */
-    public String getFirstName(){
-        return mFirstName;
-    }
-
-    /**
-     * Get professor' last name.
-     * @return professor's name
-     */
-    public String getLastName(){
-        return mLastName;
-    }
-
-    /**
-     * Get professor' name.
-     * @return professor's name
-     */
-    public String getProfessorName(){
-        return mLastName + ", " + mFirstName;
-    }
-
-
-    public String getNetid(){
-        return mNetID;
-    }
-
 
     /**
      * Set the overall quality of professor.
@@ -181,31 +125,59 @@ public class Rating implements Serializable{
         return mHelpOffered;
     }
 
+    public void setUpvote(int upvotes){
+        mUpvotes=upvotes;
+    }
+
+
+    public int getUpvote(){
+        return mUpvotes;
+    }
+
+
+    public void setDownvote(int downvotes){
+        mDownvotes=downvotes;
+    }
+
+
+    public int getDownvote(){
+        return mDownvotes;
+    }
+
+
+    public void setReview(String review){
+        mReview=review;
+    }
+
+    /**
+     *  Set the overall quality of professor
+     * @return overall quality
+     */
+    public String getReview(){
+        return mReview;
+    }
+
     /**
      * Add a method to parse json String.
      * @param ratingJSON the list of rating in json format.
      * @return A list of rating
      * @throws JSONException
      */
-    public static List<Rating> parseRatingJSON(String ratingJSON) throws JSONException{
-        List<Rating> ratingList = new ArrayList<Rating>();
+    public static List<RatingDetail> parseRatingJSON(String ratingJSON) throws JSONException{
+        List<RatingDetail> ratingList = new ArrayList<RatingDetail>();
         if(ratingJSON !=null){
             JSONArray arr = new JSONArray(ratingJSON);
 
             for(int i = 0; i< arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
-//                Rating rating = new Rating(obj.getString(NAME),obj.getString(WRITTENREVIEW),
-////                        obj.getString(EMAILADDRESS), obj.getInt(OVERALLQUALITY),
-////                        obj.getInt(DIFFICULTY), obj.getInt(TEACHINGABILITY),
-////                        obj.getInt(HELPOFFERED));
-                Rating rating = new Rating(obj.getString(FIRSTNAME),obj.getString(LASTNAME),
-                        obj.getString(NETID));
+                RatingDetail ratingDetail = new RatingDetail(obj.getInt(OVERALLQUALITY),obj.getInt(DIFFICULTY),
+                        obj.getInt(TEACHINGABILITY), obj.getInt(HELPOFFERED),
+                        obj.getString(REVIEW), obj.getInt(UPVOTES),
+                        obj.getInt(DOWNVOTES));
 
-                ratingList.add(rating);
+                ratingList.add(ratingDetail);
             }
         }
         return ratingList;
     }
-
-
 }

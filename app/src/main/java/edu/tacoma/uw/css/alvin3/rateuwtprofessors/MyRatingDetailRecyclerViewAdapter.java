@@ -7,20 +7,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.RatingDeatilFragment.OnListFragmentInteractionListener;
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.RatingDetail;
+
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Rating} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link RatingDetail} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyRatingDetailRecyclerViewAdapter extends RecyclerView.Adapter<MyRatingDetailRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Rating> mValues;
+    private final List<RatingDetail> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyRatingDetailRecyclerViewAdapter(List<Rating> items, OnListFragmentInteractionListener listener) {
+    public MyRatingDetailRecyclerViewAdapter(List<RatingDetail> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -35,8 +36,15 @@ public class MyRatingDetailRecyclerViewAdapter extends RecyclerView.Adapter<MyRa
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mProfessorView.setText(mValues.get(position).getProfessorName());
-        //holder.mContentView.setText(mValues.get(position).getOverallQuality());
+        holder.mRatingDetailView.setText(mValues.get(position).getReview());
+        holder.mContentView.setText(
+                "Overall Quality: " + "\n\t" + mValues.get(position).getOverallQuality()
+                + "\nDifficulty: " + "\n\t" + mValues.get(position).getDifficulty()
+                + "\nTeaching Ability: " + "\n\t" + mValues.get(position).getTeachingAbility()
+                + "\nHelp Offered: " + "\n\t" + mValues.get(position).getHelpOffered()
+                + "\nUpvotes/Downvotes: " + "\n\t" + mValues.get(position).getUpvote()
+                        + "/" + mValues.get(position).getDownvote()
+        );
 
 //        holder.mView.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -57,15 +65,15 @@ public class MyRatingDetailRecyclerViewAdapter extends RecyclerView.Adapter<MyRa
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mProfessorView;
+        public final TextView mRatingDetailView;
         public final TextView mContentView;
-        public Rating mItem;
+        public RatingDetail mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mProfessorView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mRatingDetailView = (TextView) view.findViewById(R.id.content);
+            mContentView = (TextView) view.findViewById(R.id.item_number);
         }
 
         @Override

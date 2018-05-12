@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.RatingDetail;
 
 /**
  * Create a parent activity of list fragment.
@@ -182,6 +183,9 @@ public class RatingActivity extends AppCompatActivity implements
         RatingDeatilFragment ratingDeatilFragment = new RatingDeatilFragment();
         Bundle args = new Bundle();
         //args.putSerializable(RatingDeatilFragment.RATING_ITEM_SELECTED,item);
+
+        //send the netID to the fragment
+        args.putString("netid", item.getNetid());
         ratingDeatilFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.rating_fragment_container,ratingDeatilFragment)
@@ -191,4 +195,8 @@ public class RatingActivity extends AppCompatActivity implements
     }
 
 
+    @Override
+    public void onListFragmentInteraction(RatingDetail item) {
+
+    }
 }
