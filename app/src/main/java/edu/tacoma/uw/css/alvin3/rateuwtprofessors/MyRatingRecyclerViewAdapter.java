@@ -1,3 +1,6 @@
+/**
+ * TCSS 450 - Spring 2018 Team 8. Alvin, Hui, and Maksim.
+ */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +16,9 @@ import java.util.List;
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Rating} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
+ * @author Maksim
+ * @auther Alvin
+ * @auther Hui
  */
 public class MyRatingRecyclerViewAdapter extends RecyclerView.Adapter<MyRatingRecyclerViewAdapter.ViewHolder> {
 

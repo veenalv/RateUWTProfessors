@@ -1,5 +1,5 @@
 /**
- * TCSS 450 - Spring 2018 Team 8.
+ * TCSS 450 - Spring 2018 Team 8. Alvin, Hui, and Maksim.
  */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
@@ -20,6 +20,9 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
  * Activities that contain this fragment must implement the
  * {@link RatingDeatilFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
+ * @author Maksim
+ * @auther Alvin
+ * @auther Hui
  */
 public class RatingDeatilFragment extends Fragment {
     public final static String RATING_ITEM_SELECTED ="rating_selected";
@@ -32,7 +35,6 @@ public class RatingDeatilFragment extends Fragment {
     //private TextView mEmailAddressTextView;
 
     private OnFragmentInteractionListener mListener;
-
 
 
     public RatingDeatilFragment() {

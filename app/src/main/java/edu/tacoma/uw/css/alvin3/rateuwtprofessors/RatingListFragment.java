@@ -1,5 +1,5 @@
 /**
- * TCSS 450 - Spring 2018 Team 8.
+ * TCSS 450 - Spring 2018 Team 8. Alvin, Hui, and Maksim.
  */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
 import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
 
 /**
@@ -35,6 +33,9 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating.Rating;
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
+ * @author Maksim
+ * @auther Alvin
+ * @auther Hui
  */
 public class RatingListFragment extends Fragment{
 

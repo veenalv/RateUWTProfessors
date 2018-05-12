@@ -1,5 +1,5 @@
 /**
- * TCSS 450 - Spring 2018 Team 8.
+ * TCSS 450 - Spring 2018 Team 8. Alvin, Hui, and Maksim.
  */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors.rating;
 
@@ -14,6 +14,9 @@ import java.util.List;
 /**
  * Make the Rating class implement Serializable. This allows us to the pass
  * the object as a parameter.
+ * @author Maksim
+ * @auther Alvin
+ * @auther Hui
  */
 public class Rating implements Serializable{
     /** The name of Professor, FirstName,LastName.*/
@@ -200,6 +203,4 @@ public class Rating implements Serializable{
         }
         return ratingList;
     }
-
-
 }
