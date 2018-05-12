@@ -16,8 +16,14 @@ import java.util.List;
  * the object as a parameter.
  */
 public class Rating implements Serializable{
-    /** The name of Professor, FirstName,LastName.*/
-    public static final String NAME ="Name";
+    /** The name of Professor, FirstName*/
+    public static final String FIRSTNAME ="FirstName";
+
+    /** The name of Professor, LastName*/
+    public static final String LASTNAME ="LastName";
+
+    /** The NetID of Professor*/
+    public static final String NETID ="NetID";
 
     /** The overall quality of professor. */
     public static final String OVERALLQUALITY ="OverallQuality";
@@ -38,78 +44,70 @@ public class Rating implements Serializable{
     public static final String EMAILADDRESS="EmailAddress";
 
     /**The information about this professor. */
-    private String mProfessorName, mWrittenReview, mEmailAddress;
+    private String mFirstName, mLastName, mNetID;
 
     /** The information about this professor.*/
     private int  mOverallQuality, mDifficulty,mTeachingAbility,mHelpOffered;
 
     /**
      * Create a constructor.
-     * @param mProfessorName Professor name.
-     * @param mWrittenReview Written review of professor
-     * @param mOverallQuality Overall quality of professor
-     * @param mDifficulty Difficulty of professor
-     * @param mTeachingAbility Teaching ability of professor
-     * @param mHelpOffered Help offered of professor
+     * param mProfessorName Professor name.
+     * param mWrittenReview Written review of professor
+     * param mOverallQuality Overall quality of professor
+     * param mDifficulty Difficulty of professor
+     * param mTeachingAbility Teaching ability of professor
+     * param mHelpOffered Help offered of professor
      */
-    public Rating(String mProfessorName, String mWrittenReview, String mEmailAddress,
-                  int mOverallQuality, int mDifficulty, int mTeachingAbility,
-                  int mHelpOffered){
-        this.mProfessorName = mProfessorName;
-        this.mWrittenReview = mWrittenReview;
-        this.mOverallQuality = mOverallQuality;
-        this.mDifficulty = mDifficulty;
-        this.mTeachingAbility = mTeachingAbility;
-        this.mHelpOffered = mHelpOffered;
-        this.mEmailAddress = mEmailAddress;
+    public Rating(String mFirstName, String mLastName, String mNetID){
+        this.mFirstName = mFirstName;
+        this.mLastName = mLastName;
+        this.mNetID = mNetID;
+//        this.mWrittenReview = mWrittenReview;
+//        this.mOverallQuality = mOverallQuality;
+//        this.mDifficulty = mDifficulty;
+//        this.mTeachingAbility = mTeachingAbility;
+//        this.mHelpOffered = mHelpOffered;
+//        this.mEmailAddress = mEmailAddress;
     }
 
     /**
-     * Set professor's name.
+     * Set professor's first name.
      * @param professorName the name of professor
      */
-    public void setProfessorName(String professorName){
-        mProfessorName = professorName;
+    public void setFirstName(String professorName){
+        mFirstName = professorName;
     }
 
     /**
-     * Get professor'name.
+     * Set professor's last name.
+     * @param professorName the name of professor
+     */
+    public void setLastName(String professorName){
+        mLastName = professorName;
+    }
+
+    /**
+     * Get professor' first name.
+     * @return professor's name
+     */
+    public String getFirstName(){
+        return mFirstName;
+    }
+
+    /**
+     * Get professor' last name.
+     * @return professor's name
+     */
+    public String getLastName(){
+        return mLastName;
+    }
+
+    /**
+     * Get professor' name.
      * @return professor's name
      */
     public String getProfessorName(){
-        return mProfessorName;
-    }
-
-    /**
-     * Set written review
-     * @param writtenReview written review
-     */
-    public void setWrittenReview(String writtenReview){
-        mWrittenReview = writtenReview;
-    }
-
-    /**
-     * Get written review.
-     * @return writtenReview
-     */
-    public String getWrittenReview(){
-        return mWrittenReview;
-    }
-
-    /**
-     * Set professor's email address.
-     * @param emailAddress email address
-     */
-    public void setEmailAddress(String emailAddress){
-        mEmailAddress=emailAddress;
-    }
-
-    /**
-     * Get professor's email address.
-     * @return email address
-     */
-    public String getEmailAddress(){
-        return mEmailAddress;
+        return mFirstName + mLastName;
     }
 
     /**
@@ -190,10 +188,12 @@ public class Rating implements Serializable{
 
             for(int i = 0; i< arr.length(); i++){
                 JSONObject obj = arr.getJSONObject(i);
-                Rating rating = new Rating(obj.getString(NAME),obj.getString(WRITTENREVIEW),
-                        obj.getString(EMAILADDRESS), obj.getInt(OVERALLQUALITY),
-                        obj.getInt(DIFFICULTY), obj.getInt(TEACHINGABILITY),
-                        obj.getInt(HELPOFFERED));
+//                Rating rating = new Rating(obj.getString(NAME),obj.getString(WRITTENREVIEW),
+////                        obj.getString(EMAILADDRESS), obj.getInt(OVERALLQUALITY),
+////                        obj.getInt(DIFFICULTY), obj.getInt(TEACHINGABILITY),
+////                        obj.getInt(HELPOFFERED));
+                Rating rating = new Rating(obj.getString(FIRSTNAME),obj.getString(LASTNAME),
+                        obj.getString(NETID));
 
                 ratingList.add(rating);
             }

@@ -47,7 +47,7 @@ public class RatingListFragment extends Fragment{
     protected String filter = "";
 
     private static final String RATING_URL =
-            "http://cssgate.insttech.washington.edu/~caih6/professorList.php?cmd=ratings";
+            "http://tcssalvin.000webhostapp.com/android/list.php?cmd=professors";
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
