@@ -6,7 +6,9 @@
  */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,8 @@ import android.view.View;
  */
 public class MainActivity extends AppCompatActivity {
 
+    /** A member variable for SharedPreferences*/
+    private SharedPreferences mSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +29,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Method that is called to continue to the sign in activity.
+     *
+     * Method that checks if the user has already logged in, it call the HomeActivity.
+     * If not, it call the LoginActivity.
      *
      * @param view is the view passed in when the button is clicked.
      */
     public void launchLogin(View view) {
-        Intent loginIntent = new Intent(this, LoginActivity.class);
-        startActivity(loginIntent);
+        mSharedPreferences = getSharedPreferences("edu.tacoma.uw.rateuwtprofessors.PREFS"
+                , Context.MODE_PRIVATE);
+
+        if(!mSharedPreferences.getBoolean("loggedin", false)){
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+        } else {
+            Intent loginIntent = new Intent(this, HomeActivity.class);
+            startActivity(loginIntent);
+        }
+
     }
 }

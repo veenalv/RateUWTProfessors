@@ -13,6 +13,7 @@ package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -45,6 +46,12 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEmail;
     /** Password that will be used to sign in. */
     private EditText mPassword;
+
+
+
+
+    /** A member variable for SharedPreferences*/
+    private SharedPreferences mSharedPreferences;
 
 
     @Override
@@ -109,10 +116,17 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * method that is used to transfer the user to the rating activity.
+     * And to store the information into the file using SharedPreferences
+     * API. When the email is verified, the information will be stored in the
+     * file.
      */
     public void goToRatingActivity() {
+        mSharedPreferences = getSharedPreferences("edu.tacoma.uw.rateuwtprofessors.PREFS"
+                ,Context.MODE_PRIVATE);
+        mSharedPreferences.edit().putBoolean("loggedin", true).commit();
         Intent ratingIntent = new Intent(this, HomeActivity.class);
         startActivity(ratingIntent);
+        finish();
     }
 
     /**

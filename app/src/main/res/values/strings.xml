@@ -22,7 +22,10 @@
 
     <string name="start">Start</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="welcome_to">     Welcome to Rate UWT Professors !</string>
     <string name="rate_professors">Rate UWT Professors !</string>
+
+    <string name="LOGIN_PREFS">edu.tacoma.uw.rateuwtprofessors.PREFS</string>
+    <string name="LOGGEDIN">loggedin</string>
+
 </resources>

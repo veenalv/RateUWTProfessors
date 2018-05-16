@@ -14,6 +14,8 @@ package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -105,6 +107,7 @@ public class HomeActivity extends AppCompatActivity implements
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_rating, menu);
         getMenuInflater().inflate(R.menu.menu_settings, menu);
+       // getMenuInflater().inflate(R.menu.drawer_view, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager)
@@ -196,6 +199,16 @@ public class HomeActivity extends AppCompatActivity implements
             Toast.makeText(this, "Settings coming soon", Toast.LENGTH_SHORT)
                     .show();
             return true;
+        } else if( id == R.id.nav_logout) {
+            // if logout button from navdrawer was clicked. Store this information into the file
+            // using SharedPreferences API. Then goto the MainActivity.
+            SharedPreferences sharedPreferences =
+                    getSharedPreferences(getString(R.string.LOGIN_PREFS), Context.MODE_PRIVATE);
+            sharedPreferences.edit().putBoolean(getString(R.string.LOGGEDIN),false)
+                    .commit();
+            Intent ratingIntent = new Intent(this, MainActivity.class);
+            startActivity(ratingIntent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
