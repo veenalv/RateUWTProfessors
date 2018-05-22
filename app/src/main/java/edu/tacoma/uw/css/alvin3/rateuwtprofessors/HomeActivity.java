@@ -206,8 +206,8 @@ public class HomeActivity extends AppCompatActivity implements
                     getSharedPreferences(getString(R.string.LOGIN_PREFS), Context.MODE_PRIVATE);
             sharedPreferences.edit().putBoolean(getString(R.string.LOGGEDIN),false)
                     .commit();
-            Intent ratingIntent = new Intent(this, MainActivity.class);
-            startActivity(ratingIntent);
+//            Intent ratingIntent = new Intent(this, MainActivity.class);
+//            startActivity(ratingIntent);
             finish();
         }
         return super.onOptionsItemSelected(item);

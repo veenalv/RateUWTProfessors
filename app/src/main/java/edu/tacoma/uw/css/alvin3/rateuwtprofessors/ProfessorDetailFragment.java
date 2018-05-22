@@ -238,9 +238,11 @@ public class ProfessorDetailFragment extends Fragment{
             if(!mRatingList.isEmpty()){
                 if(mProfessorDeatilDB== null){
                     mProfessorDeatilDB = new ProfessorDetailDB(getActivity(),mNetId);
+                    Log.i("netId = ", mNetId);
                 }
 
-                mProfessorDeatilDB.deleteProfessorDeatil();
+               // mProfessorDeatilDB.deleteProfessorDetail();
+
                 for(int i = 0; i<mRatingList.size(); i++){
                     ProfessorDetail professorDetail = mRatingList.get(i);
                     mProfessorDeatilDB.insertProfessorDeatil(professorDetail.getOverallQuality(),

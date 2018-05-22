@@ -26,7 +26,7 @@ public class ProfessorDetailDB {
     /**The version of this database*/
     public static final int DB_VERSION = 1;
     /**The database name*/
-    public static final String DB_NAME="ProfessorDeatil.db";
+    public  String DB_NAME;
     /**The professor Deatil database helper object*/
     private ProfessorDeatilDBHelper mProfessorDetailDBHelper;
     private SQLiteDatabase mSQLiteDatabase;
@@ -40,6 +40,7 @@ public class ProfessorDetailDB {
      */
     public ProfessorDetailDB(Context context, String netId) {
         PROFESSOR_DETAIL_TABLE = netId;
+        DB_NAME = netId+".db";
 
         CREATE_PROFESSOR_DETAIL_SQL = "CREATE TABLE IF NOT EXISTS "+ netId +
                 "(OverallQuality INTEGER, Difficulty INTEGER, TeachingAbility INTEGER," +
@@ -148,7 +149,7 @@ public class ProfessorDetailDB {
     /**
      * Delete all the data from the COURSE_TABLE。
      */
-    public void deleteProfessorDeatil(){
+    public void deleteProfessorDetail(){
         mSQLiteDatabase.delete(PROFESSOR_DETAIL_TABLE ,
                 null, null);
     }
