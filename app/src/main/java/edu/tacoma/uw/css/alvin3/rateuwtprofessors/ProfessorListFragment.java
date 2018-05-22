@@ -7,8 +7,6 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,7 +31,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.data.ProfessorDB;
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.Professor;
 
 /**
@@ -68,8 +65,6 @@ public class ProfessorListFragment extends Fragment{
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-
-    private ProfessorDB mProfessorDB;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -114,29 +109,9 @@ public class ProfessorListFragment extends Fragment{
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            ConnectivityManager connMgr = (ConnectivityManager) getActivity().
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            if(networkInfo != null && networkInfo.isConnected()){
-                // recyclerView.setAdapter(new MyProfessorRecyclerViewAdapter(Professor.ITEMS, mListener));
-                ProfessorAsyncTask ratingAsynTask = new ProfessorAsyncTask();
-                ratingAsynTask.execute(new String[]{RATING_URL});
-            }
-            else {
-                Toast.makeText(view.getContext(),
-                        "No network connection available. Displaying locally stored data",
-                        Toast.LENGTH_SHORT).show();
-                if(mProfessorDB == null) {
-                    mProfessorDB = new ProfessorDB(getActivity());
-                }
-                if(mRatingList == null){
-                    mRatingList = mProfessorDB.getProfessor();
-                }
-
-                setAdapter(mRatingList);
-            }
-
-
+            // recyclerView.setAdapter(new MyProfessorRecyclerViewAdapter(Professor.ITEMS, mListener));
+            ProfessorAsyncTask ratingAsynTask = new ProfessorAsyncTask();
+            ratingAsynTask.execute(new String[]{RATING_URL});
         }
         return view;
     }
@@ -247,23 +222,6 @@ public class ProfessorListFragment extends Fragment{
 
             //Everything is good, show the list of rating
             if(!mRatingList.isEmpty()){
-                if(mProfessorDB == null){
-                    mProfessorDB = new ProfessorDB(getActivity());
-                }
-
-                // Delete old data so that you can refresh the local
-                // database with the network data.
-                mProfessorDB.deleteProfessor();
-
-                // Also, add to the local database
-                for(int i = 0; i<mRatingList.size(); i++){
-                    Professor professor = mRatingList.get(i);
-                    mProfessorDB.insertProfessor(professor.getFirstName(),
-                            professor.getLastName(),
-                            professor.getNetid());
-
-                }
-
                 setAdapter(mRatingList);
             }
         }
