@@ -7,6 +7,8 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.data.ProfessorDB;
+import edu.tacoma.uw.css.alvin3.rateuwtprofessors.data.ProfessorDetailDB;
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.ProfessorDetail;
 
 /**
@@ -64,6 +68,7 @@ public class ProfessorDetailFragment extends Fragment{
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private ProfessorDetailDB mProfessorDeatilDB;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -109,10 +114,33 @@ public class ProfessorDetailFragment extends Fragment{
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            // recyclerView.setAdapter(new MyProfessorRecyclerViewAdapter(Professor.ITEMS, mListener));
-            ProfessorAsyncTask ratingAsynTask = new ProfessorAsyncTask();
-            //Fetch the JSON object for our ProfessorDetails.
-            ratingAsynTask.execute(new String[]{RATING_URL + mNetId});
+
+            ConnectivityManager connMgr = (ConnectivityManager) getActivity().
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if(networkInfo != null && networkInfo.isConnected()){
+
+                // recyclerView.setAdapter(new MyProfessorRecyclerViewAdapter(Professor.ITEMS, mListener));
+                ProfessorAsyncTask ratingAsynTask = new ProfessorAsyncTask();
+                //Fetch the JSON object for our ProfessorDetails.
+                ratingAsynTask.execute(new String[]{RATING_URL + mNetId});
+            }
+            else {
+                Toast.makeText(view.getContext(),
+                        "No network connection available. Displaying locally stored data",
+                        Toast.LENGTH_SHORT).show();
+                if(mProfessorDeatilDB == null) {
+                    mProfessorDeatilDB = new ProfessorDetailDB(getActivity(),mNetId);
+                }
+                if(mRatingList == null){
+                    mRatingList = mProfessorDeatilDB.getProfessorDeatil();
+                }
+
+                setAdapter(mRatingList);
+            }
+
+
+
         }
         return view;
     }
