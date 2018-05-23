@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -103,7 +104,7 @@ public class ProfessorListFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_rating_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_professor_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -138,6 +139,9 @@ public class ProfessorListFragment extends Fragment{
 
 
         }
+        FloatingActionButton floatingActionButton = (FloatingActionButton)
+                getActivity().findViewById(R.id.fab);
+        floatingActionButton.hide();
         return view;
     }
 

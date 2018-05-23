@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,7 +31,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import edu.tacoma.uw.css.alvin3.rateuwtprofessors.data.ProfessorDB;
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.data.ProfessorDetailDB;
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.ProfessorDetail;
 
@@ -102,7 +102,7 @@ public class ProfessorDetailFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_rating_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_professor_list, container, false);
         //receive netID here
         mNetId =getArguments().getString("netid");
         // Set the adapter, or update the RecyclerView.
@@ -142,6 +142,9 @@ public class ProfessorDetailFragment extends Fragment{
 
 
         }
+        FloatingActionButton floatingActionButton = (FloatingActionButton)
+                getActivity().findViewById(R.id.fab);
+        floatingActionButton.show();
         return view;
     }
 
