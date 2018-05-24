@@ -29,12 +29,25 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="161" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                     </map>
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="fdfdfd" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="$USER_HOME$/Dropbox/Screenshots/Screenshot 2018-05-10 15.36.43.png" />
+                                      <entry key="foregroundImage" value="$USER_HOME$/Desktop/ic_RWP.png" />
                                       <entry key="foregroundLayerName" value="ic_professor" />
                                       <entry key="outputName" value="professor" />
                                     </map>
