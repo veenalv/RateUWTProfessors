@@ -145,6 +145,8 @@ public class ProfessorDetailFragment extends Fragment{
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
         floatingActionButton.show();
+
+
         return view;
     }
 
