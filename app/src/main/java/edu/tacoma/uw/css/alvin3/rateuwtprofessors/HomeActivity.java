@@ -15,7 +15,6 @@ package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -50,6 +49,7 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.ProfessorDetail;
 public class HomeActivity extends AppCompatActivity implements
         ProfessorListFragment.OnListFragmentInteractionListener,
         RatingAddFragment.OnFragmentInteractionListener,
+        ProfessorAddFragment.OnFragmentInteractionListener,
         ProfessorDetailFragment.OnListFragmentInteractionListener{
 
     /**
@@ -77,19 +77,39 @@ public class HomeActivity extends AppCompatActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Find the current detail fragment and obtain the netId associated with it.
-                Bundle args = new Bundle();
+
+                //Find the current fragment
                 ProfessorDetailFragment currentDetailFragment = (ProfessorDetailFragment) getSupportFragmentManager().findFragmentByTag("currentDetailFragment");
-                args.putString("netid", currentDetailFragment.getNetId());
+                ProfessorListFragment currentListFragment = (ProfessorListFragment) getSupportFragmentManager().findFragmentByTag("currentListFragment");
+                Bundle args = new Bundle();
+                //if the current fragment displayed in the rating_fragment_container
+                //is our detail fragment, float action button will add a rating
+                if (currentDetailFragment != null && currentDetailFragment.isVisible()) {
+                    args.putString("netid", currentDetailFragment.getNetId());
 
-                //Send the netId into the ratingAddFragment
-                RatingAddFragment ratingAddFragment = new RatingAddFragment();
-                ratingAddFragment.setArguments(args);
+                    //Send the netId into the ratingAddFragment
+                    RatingAddFragment ratingAddFragment = new RatingAddFragment();
+                    ratingAddFragment.setArguments(args);
 
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.rating_fragment_container, ratingAddFragment)
-                        .addToBackStack(null)
-                        .commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.rating_fragment_container, ratingAddFragment)
+                            .addToBackStack(null)
+                            .commit();
+                } else if (currentListFragment != null && currentListFragment.isVisible()) {
+                    //if the current fragment displayed in the rating_fragment_container
+                    //is our list fragment, float action button will add a professor
+
+                    //args.putString("netid", currentDetailFragment.getNetId());
+
+                    //Send the netId into the ratingAddFragment
+                    ProfessorAddFragment professorAddFragment = new ProfessorAddFragment();
+                    professorAddFragment.setArguments(args);
+
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.rating_fragment_container, professorAddFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
             }
         });
 
@@ -130,7 +150,7 @@ public class HomeActivity extends AppCompatActivity implements
         rlf = new ProfessorListFragment();
         if (findViewById(R.id.rating_fragment_container)!= null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.rating_fragment_container, rlf)
+                    .add(R.id.rating_fragment_container, rlf, "currentListFragment")
                     .commit();
         }
 
@@ -273,18 +293,42 @@ public class HomeActivity extends AppCompatActivity implements
     /**
      * Over ridden methods from RatingAddFragment
      */
+
     @Override
+    /**
+     * Add a rating with the given URL.
+     * @param url the url
+     */
     public void addRating(String url) {
 
-        AddRatingTask task = new AddRatingTask();
+        AddRatingProfessorTask task = new AddRatingProfessorTask();
         task.execute(new String[]{url.toString()});
 
         // Takes you back to the previous fragment by popping the current fragment out.
         getSupportFragmentManager().popBackStackImmediate();
     }
 
+    /**
+     * Overriden methods from ProfessorAddFragment
+     */
 
-    private class AddRatingTask extends AsyncTask<String, Void, String> {
+    @Override
+    /**
+     * Add a professor with the given URL.
+     * @param url the url
+     */
+    public void addProfessor(String url) {
+        AddRatingProfessorTask task = new AddRatingProfessorTask();
+        task.execute(new String[]{url.toString()});
+
+        // Takes you back to the previous fragment by popping the current fragment out.
+        getSupportFragmentManager().popBackStackImmediate();
+    }
+
+    /**
+     * An inner class to add a rating or professor into our database.
+     */
+    private class AddRatingProfessorTask extends AsyncTask<String, Void, String> {
 
 
         @Override
@@ -310,7 +354,7 @@ public class HomeActivity extends AppCompatActivity implements
                     }
 
                 } catch (Exception e) {
-                    response = "Unable to add Rating, Reason: "
+                    response = "Unable to add , Reason: "
                             + e.getMessage();
                 } finally {
                     if (urlConnection != null)
@@ -335,7 +379,7 @@ public class HomeActivity extends AppCompatActivity implements
                 JSONObject jsonObject = new JSONObject(result);
                 String status = (String) jsonObject.get("result");
                 if (status.equals("success")) {
-                    Toast.makeText(getApplicationContext(), "Rating successfully added!"
+                    Toast.makeText(getApplicationContext(), "Successfully added!"
                             , Toast.LENGTH_LONG)
                             .show();
                 } else {
