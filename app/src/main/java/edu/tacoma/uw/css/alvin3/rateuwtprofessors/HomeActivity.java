@@ -77,9 +77,17 @@ public class HomeActivity extends AppCompatActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RatingAddFragment courseAddFragment = new RatingAddFragment();
+                //Find the current detail fragment and obtain the netId associated with it.
+                Bundle args = new Bundle();
+                ProfessorDetailFragment currentDetailFragment = (ProfessorDetailFragment) getSupportFragmentManager().findFragmentByTag("currentDetailFragment");
+                args.putString("netid", currentDetailFragment.getNetId());
+
+                //Send the netId into the ratingAddFragment
+                RatingAddFragment ratingAddFragment = new RatingAddFragment();
+                ratingAddFragment.setArguments(args);
+
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.rating_fragment_container, courseAddFragment)
+                        .replace(R.id.rating_fragment_container, ratingAddFragment)
                         .addToBackStack(null)
                         .commit();
             }
@@ -249,7 +257,7 @@ public class HomeActivity extends AppCompatActivity implements
         args.putString("netid", item.getNetid());
         professorDetailFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.rating_fragment_container, professorDetailFragment)
+                .replace(R.id.rating_fragment_container, professorDetailFragment, "currentDetailFragment")
                 .addToBackStack(null)
                 .commit();
         actionMenuItem.collapseActionView();

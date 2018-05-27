@@ -27,12 +27,18 @@ import static android.content.ContentValues.TAG;
  * create an instance of this fragment.
  */
 public class RatingAddFragment extends Fragment {
+
+    //The default upvote and downvotes for a rating
+    private static final int DEFAULT_UPVOTE = 0;
+    private static final int DEFAULT_DOWNVOTE = 0;
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
+    private String mNetId;
 
     private EditText mOverallQuality;
     private EditText mDifficulty;
@@ -78,6 +84,10 @@ public class RatingAddFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //receive netID here
+        mNetId = getArguments().getString("netid");
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_rating_add, container, false);
         mOverallQuality = (EditText) v.findViewById(R.id.overallquality);
@@ -111,10 +121,10 @@ public class RatingAddFragment extends Fragment {
 
         try {
 
+            sb.append("netid=" + mNetId);
             String quality = mOverallQuality.getText().toString();
-            sb.append("quality=");
+            sb.append("&quality=");
             sb.append(URLEncoder.encode(quality, "UTF-8"));
-
 
             String difficulty = mDifficulty.getText().toString();
             sb.append("&difficulty=");
@@ -133,6 +143,8 @@ public class RatingAddFragment extends Fragment {
             sb.append("&review=");
             sb.append(URLEncoder.encode(writtenReview, "UTF-8"));
 
+            sb.append("&upvote=" + DEFAULT_UPVOTE);
+            sb.append("&downvote=" + DEFAULT_DOWNVOTE);
             Log.i("MY_URL", sb.toString());
 
         }

@@ -90,6 +90,14 @@ public class ProfessorDetailFragment extends Fragment{
         return fragment;
     }
 
+    /**
+     * Get professor' Net Id.
+     * @return professor's Net Id
+     */
+    public String getNetId(){
+        return mNetId;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
