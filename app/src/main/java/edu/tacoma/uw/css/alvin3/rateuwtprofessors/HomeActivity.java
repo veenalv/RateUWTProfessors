@@ -133,7 +133,7 @@ public class HomeActivity extends AppCompatActivity implements
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 // Do something when action item collapses
-                rlf.setAdapter(rlf.mRatingList);
+                rlf.setAdapter(rlf.getRatingList());
                 return true;  // Return true to collapse action view
             }
 
@@ -141,7 +141,7 @@ public class HomeActivity extends AppCompatActivity implements
             public boolean onMenuItemActionExpand(MenuItem item) {
                 // Do something when expanded
                 getSupportFragmentManager().popBackStack();
-                rlf.setAdapter(rlf.mRatingList);
+                rlf.setAdapter(rlf.getRatingList());
                 return true;  // Return true to expand action view
             }
         };

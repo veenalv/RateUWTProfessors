@@ -45,19 +45,19 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.Professor;
  */
 public class ProfessorListFragment extends Fragment{
 
-    protected List<Professor> mRatingList;
+    private List<Professor> mRatingList;
 
     /**
      * Create a member variable for the RecyclerView so that we can access it in the
      * thread to load the data.
      */
-    protected RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
 
     /**
      * The query that the user types is the filter we put our
      * List of Professor's through.
      */
-    protected String filter = "";
+    private String mFilter = "";
 
     /**
      * The initial URL, sans the NetID of the Professor we want
@@ -90,6 +90,30 @@ public class ProfessorListFragment extends Fragment{
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    /**
+     * Get the rating list
+     * @return the list of ratings
+     */
+    public List getRatingList() {
+        return mRatingList;
+    }
+
+    /**
+     * Get the recycler view
+     * @return the recycler view
+     */
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
+
+    /**
+     * Get the filter
+     * @return the filter
+     */
+    public String getFilter() {
+        return mFilter;
     }
 
     @Override

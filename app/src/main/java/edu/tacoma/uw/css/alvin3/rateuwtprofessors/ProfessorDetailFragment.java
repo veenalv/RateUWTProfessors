@@ -45,13 +45,13 @@ public class ProfessorDetailFragment extends Fragment{
     /**
      * List of ProfessorDetails. NOTE: This could later be just one Object.
      */
-    protected List<ProfessorDetail> mRatingList;
+    private List<ProfessorDetail> mRatingList;
 
     /**
      * Create a member variable for the RecyclerView so that we can access it in the
      * thread to load the data.
      */
-    protected RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
 
     /**
      * The NetID of the Professor we want details of.
