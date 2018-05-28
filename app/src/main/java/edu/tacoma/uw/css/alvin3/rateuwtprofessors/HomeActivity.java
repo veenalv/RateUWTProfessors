@@ -67,6 +67,13 @@ public class HomeActivity extends AppCompatActivity implements
      */
     private DrawerLayout mDrawerLayout;
 
+    /**
+     * Default sort method.
+     * 1 is for first name a-z
+     * 2 is for last name a-z
+     */
+    private int sort = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -175,7 +182,7 @@ public class HomeActivity extends AppCompatActivity implements
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 // Do something when action item collapses
-                rlf.setAdapter(rlf.getRatingList());
+                rlf.setAdapter(rlf.getRatingList(), sort);
                 return true;  // Return true to collapse action view
             }
 
@@ -183,7 +190,7 @@ public class HomeActivity extends AppCompatActivity implements
             public boolean onMenuItemActionExpand(MenuItem item) {
                 // Do something when expanded
                 getSupportFragmentManager().popBackStack();
-                rlf.setAdapter(rlf.getRatingList());
+                rlf.setAdapter(rlf.getRatingList(), sort);
                 return true;  // Return true to expand action view
             }
         };
@@ -209,7 +216,7 @@ public class HomeActivity extends AppCompatActivity implements
             //Everytime the query text changes, re-filter our list of professors.
             @Override
             public boolean onQueryTextChange(String newText) {
-                rlf.setAdapter(rlf.filter(newText));
+                rlf.setAdapter(rlf.filter(newText), sort);
                 return false;
             }
         });
@@ -225,46 +232,15 @@ public class HomeActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         if (id == R.id.drop1) {
-            //if settings button was clicked
-            Toast.makeText(this, "1", Toast.LENGTH_SHORT)
-                    .show();
+            //sort by first name a-z
+            sort = 1;
+            rlf.setAdapter(rlf.getRatingList(), sort);
             return true;
         } else if (id == R.id.drop2) {
-            //if settings button was clicked
-            Toast.makeText(this, "2", Toast.LENGTH_SHORT)
-                    .show();
+            //sort by last name a-z
+            sort = 2;
+            rlf.setAdapter(rlf.getRatingList(), sort);
             return true;
-
-        } else if (id == R.id.drop3) {
-            //if settings button was clicked
-            Toast.makeText(this, "3", Toast.LENGTH_SHORT)
-                    .show();
-            return true;
-
-        } else if (id == R.id.drop4) {
-            //if settings button was clicked
-            Toast.makeText(this, "4", Toast.LENGTH_SHORT)
-                    .show();
-            return true;
-
-        } else if (id == R.id.drop5) {
-            //if settings button was clicked
-            Toast.makeText(this, "5", Toast.LENGTH_SHORT)
-                    .show();
-            return true;
-
-        } else if (id == R.id.drop6) {
-            //if settings button was clicked
-            Toast.makeText(this, "6", Toast.LENGTH_SHORT)
-                    .show();
-            return true;
-
-        } else if (id == R.id.drop7) {
-            //if settings button was clicked
-            Toast.makeText(this, "7", Toast.LENGTH_SHORT)
-                    .show();
-            return true;
-
         } else if (id == R.id.action_settings) {
             //if settings button was clicked
             Toast.makeText(this, "Settings coming soon", Toast.LENGTH_SHORT)

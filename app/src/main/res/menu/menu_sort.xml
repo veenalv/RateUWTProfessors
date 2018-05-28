@@ -8,32 +8,7 @@
             />
         <item
             android:id="@+id/drop2"
-            android:title="First Name (Z-A)"
-            android:tooltipText="Sort By"
-            />
-        <item
-            android:id="@+id/drop3"
-            android:title="Last Name (Z-A)"
-            android:tooltipText="Sort By"
-            />
-        <item
-            android:id="@+id/drop4"
-            android:title="Last Name (Z-A)"
-            android:tooltipText="Sort By"
-            />
-        <item
-            android:id="@+id/drop5"
-            android:title="Last Name (Z-A)"
-            android:tooltipText="Sort By"
-            />
-        <item
-            android:id="@+id/drop6"
-            android:title="Most Upvotes"
-            android:tooltipText="Sort By"
-            />
-        <item
-            android:id="@+id/drop7"
-            android:title="Most Downvotes"
+            android:title="Last Name (A-Z)"
             android:tooltipText="Sort By"
             />
     </group>
