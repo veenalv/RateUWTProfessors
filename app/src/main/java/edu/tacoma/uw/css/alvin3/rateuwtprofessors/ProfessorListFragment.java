@@ -60,6 +60,13 @@ public class ProfessorListFragment extends Fragment{
     private String mFilter = "";
 
     /**
+     * The default sorting
+     * 1 - first name a-z
+     * 2 - last name a-z
+     */
+    private int mSort;
+
+    /**
      * The initial URL, sans the NetID of the Professor we want
      * details of.
      */
@@ -128,6 +135,10 @@ public class ProfessorListFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //receive sort method here
+        mSort = getArguments().getInt("sort");
+
         View view = inflater.inflate(R.layout.fragment_professor_list, container, false);
 
         // Set the adapter
@@ -158,7 +169,7 @@ public class ProfessorListFragment extends Fragment{
                     mRatingList = mProfessorDB.getProfessor();
                 }
 
-                setAdapter(mRatingList, 2);
+                setAdapter(mRatingList, mSort);
             }
 
 
@@ -293,7 +304,7 @@ public class ProfessorListFragment extends Fragment{
 
                 }
 
-                setAdapter(mRatingList, 2);
+                setAdapter(mRatingList, mSort);
             }
         }
     }
