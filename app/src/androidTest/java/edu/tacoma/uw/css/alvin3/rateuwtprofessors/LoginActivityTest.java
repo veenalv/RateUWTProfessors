@@ -37,11 +37,11 @@ public class LoginActivityTest {
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
             LoginActivity.class);
 
-    @Before
-    public void testLaunchLogin(){
-        onView(withId(R.id.SignIn_MianActivity))
-                .perform(click());
-    }
+//    @Before
+//    public void testLaunchLogin(){
+//        onView(withId(R.id.SignIn_MainActivity))
+//                .perform(click());
+//    }
 
     /** Test the LoginActivity with invalid password. */
     @Test
