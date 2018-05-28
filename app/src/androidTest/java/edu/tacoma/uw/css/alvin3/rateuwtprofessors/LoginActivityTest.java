@@ -1,3 +1,10 @@
+/**
+ *
+ * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
+ */
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
 import android.support.test.filters.LargeTest;
@@ -16,14 +23,12 @@ import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 
 /**
- *
+ * Test of the LoginActivity
  */
-
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class LoginActivityTest {
@@ -31,6 +36,7 @@ public class LoginActivityTest {
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
             LoginActivity.class);
 
+    /** Test the LoginActivity with invalid password. */
     @Test
     public void testLoginInvalidPassword(){
         onView(withId(R.id.email))
@@ -46,6 +52,9 @@ public class LoginActivityTest {
 
     }
 
+    /**
+     * Test the LoginActivity with invalid email.
+     */
     @Test
     public void testLoginInvalidEmail(){
         onView(withId(R.id.email))
@@ -61,6 +70,9 @@ public class LoginActivityTest {
 
     }
 
+    /**
+     * Test the login with valid email and password.
+     */
     @Test
     public void testLoginvalid(){
         onView(withId(R.id.email))
@@ -72,8 +84,6 @@ public class LoginActivityTest {
         onView(withText("successful login"))
                 .inRoot(withDecorView(not(is(mActivityRule.getActivity().
                         getWindow().getDecorView())))).check(matches(isDisplayed()));
-
-
 
     }
 

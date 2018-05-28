@@ -156,6 +156,11 @@ public class HomeActivity extends AppCompatActivity implements
 
     }
 
+    /**
+     *Inflate the menus in the HomeActivity.
+     * @param menu menu
+     * @return true/ false
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -217,6 +222,11 @@ public class HomeActivity extends AppCompatActivity implements
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * Make the menus action work
+     * @param item item
+     * @return true/false
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -290,12 +300,9 @@ public class HomeActivity extends AppCompatActivity implements
         //currently nothing here because we disabled clicking on items in ProfessorDetail.
     }
 
-    /**
-     * Over ridden methods from RatingAddFragment
-     */
-
     @Override
     /**
+     * Over ridden methods from RatingAddFragment
      * Add a rating with the given URL.
      * @param url the url
      */
@@ -308,12 +315,10 @@ public class HomeActivity extends AppCompatActivity implements
         getSupportFragmentManager().popBackStackImmediate();
     }
 
-    /**
-     * Overriden methods from ProfessorAddFragment
-     */
 
     @Override
     /**
+     * Overridden methods from ProfessorAddFragment
      * Add a professor with the given URL.
      * @param url the url
      */

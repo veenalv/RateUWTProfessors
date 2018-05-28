@@ -80,11 +80,21 @@ public class ProfessorDB {
             DROP_PROFESSOR_SQL = context.getString(R.string.DROP_PROFESSOR_SQL);
         }
 
+        /**
+         * Create Professor table.
+         * @param sqLiteDatabase SQLite database
+         */
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase){
             sqLiteDatabase.execSQL(CREATE_PROFESSOR_SQL);
         }
 
+        /**
+         * Update the version of professor table
+         * @param sqLiteDatabase SQLite database
+         * @param i perilous version number
+         * @param i1 new version number
+         */
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1){
             sqLiteDatabase.execSQL(DROP_PROFESSOR_SQL);
@@ -113,8 +123,9 @@ public class ProfessorDB {
 
     }
 
-
-
+    /**
+     * Close the SQLite database.
+     */
     public void closeDB(){
         mSQLiteDatabase.close();
     }
@@ -126,7 +137,4 @@ public class ProfessorDB {
         mSQLiteDatabase.delete(PROFESSOR_TABLE ,
                 null, null);
     }
-
-
-
 }
