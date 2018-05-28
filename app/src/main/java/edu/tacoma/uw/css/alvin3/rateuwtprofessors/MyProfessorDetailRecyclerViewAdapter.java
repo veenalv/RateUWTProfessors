@@ -7,6 +7,8 @@
 
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -71,7 +73,6 @@ public class MyProfessorDetailRecyclerViewAdapter extends RecyclerView.Adapter<M
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    Log.d("onClick", v.toString());
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
                 return true;

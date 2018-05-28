@@ -18,6 +18,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -288,6 +289,12 @@ public class HomeActivity extends AppCompatActivity implements
     public void onListFragmentInteraction(ProfessorDetail item) {
         //handle user clicking on ProfessorDetail items here.
         //currently nothing here because we disabled clicking on items in ProfessorDetail.
+
+        // make the dialog here
+
+        DialogFragment fragment = new ShareProfessorDialogFragment();
+        fragment.show(getSupportFragmentManager(), "launch");
+
     }
 
     /**
