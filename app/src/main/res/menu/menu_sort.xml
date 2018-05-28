@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <group>
+        <item
+            android:id="@+id/drop1"
+            android:title="First Name (A-Z)"
+            android:tooltipText="Sort By"
+            />
+        <item
+            android:id="@+id/drop2"
+            android:title="First Name (Z-A)"
+            android:tooltipText="Sort By"
+            />
+        <item
+            android:id="@+id/drop3"
+            android:title="Last Name (Z-A)"
+            android:tooltipText="Sort By"
+            />
+        <item
+            android:id="@+id/drop4"
+            android:title="Last Name (Z-A)"
+            android:tooltipText="Sort By"
+            />
+        <item
+            android:id="@+id/drop5"
+            android:title="Last Name (Z-A)"
+            android:tooltipText="Sort By"
+            />
+        <item
+            android:id="@+id/drop6"
+            android:title="Most Upvotes"
+            android:tooltipText="Sort By"
+            />
+        <item
+            android:id="@+id/drop7"
+            android:title="Most Downvotes"
+            android:tooltipText="Sort By"
+            />
+    </group>
+</menu>

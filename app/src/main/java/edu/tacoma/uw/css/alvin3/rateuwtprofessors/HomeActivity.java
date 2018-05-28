@@ -160,7 +160,7 @@ public class HomeActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_rating, menu);
-        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        getMenuInflater().inflate(R.menu.menu_sort, menu);
        // getMenuInflater().inflate(R.menu.drawer_view, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
@@ -224,7 +224,48 @@ public class HomeActivity extends AppCompatActivity implements
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.drop1) {
+            //if settings button was clicked
+            Toast.makeText(this, "1", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+        } else if (id == R.id.drop2) {
+            //if settings button was clicked
+            Toast.makeText(this, "2", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+
+        } else if (id == R.id.drop3) {
+            //if settings button was clicked
+            Toast.makeText(this, "3", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+
+        } else if (id == R.id.drop4) {
+            //if settings button was clicked
+            Toast.makeText(this, "4", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+
+        } else if (id == R.id.drop5) {
+            //if settings button was clicked
+            Toast.makeText(this, "5", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+
+        } else if (id == R.id.drop6) {
+            //if settings button was clicked
+            Toast.makeText(this, "6", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+
+        } else if (id == R.id.drop7) {
+            //if settings button was clicked
+            Toast.makeText(this, "7", Toast.LENGTH_SHORT)
+                    .show();
+            return true;
+
+        } else if (id == R.id.action_settings) {
             //if settings button was clicked
             Toast.makeText(this, "Settings coming soon", Toast.LENGTH_SHORT)
                     .show();
