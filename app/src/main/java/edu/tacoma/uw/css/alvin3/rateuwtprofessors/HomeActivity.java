@@ -291,9 +291,11 @@ public class HomeActivity extends AppCompatActivity implements
         //currently nothing here because we disabled clicking on items in ProfessorDetail.
 
         // make the dialog here
-
-        DialogFragment fragment = new ShareProfessorDialogFragment();
-        fragment.show(getSupportFragmentManager(), "launch");
+        ShareProfessorDialogFragment shareProfessorsDialog = new ShareProfessorDialogFragment();
+        String messageBody = String.format("Overall Quality: %d\nDifficulty: %d\nTeaching Ability: %d\nHelp Offered: %d\n\nRating:\n %s\n",
+                        item.getOverallQuality(), item.getDifficulty(), item.getTeachingAbility(), item.getHelpOffered(), item.getReview());
+        shareProfessorsDialog.setMessage(messageBody);
+        shareProfessorsDialog.show(getSupportFragmentManager(), "launch");
 
     }
 
