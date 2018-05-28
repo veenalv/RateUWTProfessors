@@ -97,7 +97,9 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             // if account has been created.
                             if (task.isSuccessful()) {
+                                Toast.makeText(getBaseContext(),"successful login",Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
+
                                 // if email is verified, go to next activity.
                                 if (user.isEmailVerified()) {
                                     goToRatingActivity();
