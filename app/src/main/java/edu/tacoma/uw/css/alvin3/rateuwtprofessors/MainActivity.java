@@ -48,4 +48,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    /**
+     * Method that is used to transfer the user to the register activity.
+     * @param theView is th the view that is passed in when the user clicks on the register button.
+     */
+    public void registerClick(View theView) {
+        Intent registerIntent = new Intent(this, RegisterActivity.class);
+        startActivity(registerIntent);
+    }
+
+    /**
+     * Method that is used to transfer the user to the register activity.
+     * @param theView is th the view that is passed in when the user clicks on the register button.
+     */
+    public void loginClick(View theView) {
+        mSharedPreferences = getSharedPreferences("edu.tacoma.uw.rateuwtprofessors.PREFS"
+                , Context.MODE_PRIVATE);
+
+        if(!mSharedPreferences.getBoolean("loggedin", false)){
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+        } else {
+            Intent loginIntent = new Intent(this, HomeActivity.class);
+            startActivity(loginIntent);
+        }
+      
+    }
 }

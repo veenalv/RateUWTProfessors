@@ -11,6 +11,7 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,12 @@ public class LoginActivityTest {
     @Rule
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
             LoginActivity.class);
+
+    @Before
+    public void testLaunchLogin(){
+        onView(withId(R.id.SignIn_MianActivity))
+                .perform(click());
+    }
 
     /** Test the LoginActivity with invalid password. */
     @Test
