@@ -71,6 +71,7 @@ public class HomeActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Toast.makeText(this,"successful login",Toast.LENGTH_SHORT).show();
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
