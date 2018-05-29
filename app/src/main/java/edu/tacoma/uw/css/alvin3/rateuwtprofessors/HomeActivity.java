@@ -292,6 +292,7 @@ public class HomeActivity extends AppCompatActivity implements
 
         // make the dialog here
         ShareProfessorDialogFragment shareProfessorsDialog = new ShareProfessorDialogFragment();
+
         String messageBody = String.format("Overall Quality: %d\nDifficulty: %d\nTeaching Ability: %d\nHelp Offered: %d\n\nRating:\n %s\n",
                         item.getOverallQuality(), item.getDifficulty(), item.getTeachingAbility(), item.getHelpOffered(), item.getReview());
         shareProfessorsDialog.setMessage(messageBody);
