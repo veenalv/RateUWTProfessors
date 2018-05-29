@@ -60,6 +60,13 @@ public class ProfessorListFragment extends Fragment{
     private String mFilter = "";
 
     /**
+     * The default sorting
+     * 1 - first name a-z
+     * 2 - last name a-z
+     */
+    private int mSort;
+
+    /**
      * The initial URL, sans the NetID of the Professor we want
      * details of.
      */
@@ -128,6 +135,10 @@ public class ProfessorListFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //receive sort method here
+        mSort = getArguments().getInt("sort");
+
         View view = inflater.inflate(R.layout.fragment_professor_list, container, false);
 
         // Set the adapter
@@ -158,7 +169,7 @@ public class ProfessorListFragment extends Fragment{
                     mRatingList = mProfessorDB.getProfessor();
                 }
 
-                setAdapter(mRatingList);
+                setAdapter(mRatingList, mSort);
             }
 
 
@@ -172,9 +183,10 @@ public class ProfessorListFragment extends Fragment{
     /**
      * Set the adapter or update the RecyclerView with new information.
      * @param list the list of Professors
+     * @param sort 1 is for first name (a-z), 2 is for last name(a-z)
      */
-    protected void setAdapter(List<Professor> list) {
-        Collections.sort(list, new CompareRatings());
+    protected void setAdapter(List<Professor> list, int sort) {
+        Collections.sort(list, new CompareRatings(sort));
         mRecyclerView.setAdapter(new MyProfessorRecyclerViewAdapter(list, mListener));
     }
 
@@ -292,7 +304,7 @@ public class ProfessorListFragment extends Fragment{
 
                 }
 
-                setAdapter(mRatingList);
+                setAdapter(mRatingList, mSort);
             }
         }
     }
@@ -303,9 +315,19 @@ public class ProfessorListFragment extends Fragment{
      * alphabetical order.
      */
     private class CompareRatings implements Comparator<Professor> {
+        //1 is for first name a-z,
+        //2 is for last name a-z
+        private int sort;
+        public CompareRatings(int sort) {
+            this.sort = sort;
+        }
         @Override
         public int compare(Professor o1, Professor o2) {
-            return o1.getProfessorName().compareTo(o2.getProfessorName());
+            if (sort == 1) {
+                return o1.getFirstName().compareTo(o2.getFirstName());
+            } else {
+                return o1.getLastName().compareTo(o2.getLastName());
+            }
         }
     }
 }

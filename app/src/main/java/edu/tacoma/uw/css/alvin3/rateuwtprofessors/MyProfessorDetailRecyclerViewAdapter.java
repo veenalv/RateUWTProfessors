@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.ProfessorDetailFragment.OnListFragmentInteractionListener;
@@ -50,6 +51,9 @@ public class MyProfessorDetailRecyclerViewAdapter extends RecyclerView.Adapter<M
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        Button upvote = new Button(holder.mContentView.getContext());
+        upvote.setText("Upvote");
+        upvote.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         holder.mItem = mValues.get(position);
         holder.mRatingDetailView.setText(mValues.get(position).getReview());
         holder.mContentView.setText(
