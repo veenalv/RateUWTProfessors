@@ -33,29 +33,29 @@ public class Professor implements Serializable{
     /** The NetID of Professor*/
     public static final String NETID ="NetID";
 
-    /** The overall quality of professor. */
-    public static final String OVERALLQUALITY ="OverallQuality";
-
-    /** The difficulty of professor. */
-    public static final String DIFFICULTY ="Difficulty";
-
-    /**The teaching ability. */
-    public static final String TEACHINGABILITY ="TeachingAbility";
-
-    /**The help offered of professor. */
-    public static final String HELPOFFERED="HelpOffered";
-
-    /** The written review of professor.*/
-    public static final String WRITTENREVIEW="WrittenReview";
-
-    /** The email address of professor. */
-    public static final String EMAILADDRESS="EmailAddress";
+//    /** The overall quality of professor. */
+//    public static final String OVERALLQUALITY ="OverallQuality";
+//
+//    /** The difficulty of professor. */
+//    public static final String DIFFICULTY ="Difficulty";
+//
+//    /**The teaching ability. */
+//    public static final String TEACHINGABILITY ="TeachingAbility";
+//
+//    /**The help offered of professor. */
+//    public static final String HELPOFFERED="HelpOffered";
+//
+//    /** The written review of professor.*/
+//    public static final String WRITTENREVIEW="WrittenReview";
+//
+//    /** The email address of professor. */
+//    public static final String EMAILADDRESS="EmailAddress";
 
     /**The information about this professor. */
     private String mFirstName, mLastName, mNetID;
 
-    /** The information about this professor.*/
-    private int  mOverallQuality, mDifficulty,mTeachingAbility,mHelpOffered;
+//    /** The information about this professor.*/
+//    private int  mOverallQuality, mDifficulty,mTeachingAbility,mHelpOffered;
 
     /**
      * Create a constructor.
@@ -122,70 +122,70 @@ public class Professor implements Serializable{
     }
 
 
-    /**
-     * Set the overall quality of professor.
-     * @param overallQuality overall quality
-     */
-    public void setOverallQuality(int overallQuality){
-        mOverallQuality=overallQuality;
-    }
+//    /**
+//     * Set the overall quality of professor.
+//     * @param overallQuality overall quality
+//     */
+//    public void setOverallQuality(int overallQuality){
+//        mOverallQuality=overallQuality;
+//    }
+//
+//    /**
+//     *  Get the overall quality of professor
+//     * @return overall quality
+//     */
+//    public int getOverallQuality(){
+//        return mOverallQuality;
+//    }
 
-    /**
-     *  Get the overall quality of professor
-     * @return overall quality
-     */
-    public int getOverallQuality(){
-        return mOverallQuality;
-    }
-
-    /**
-     * Set the difficulty of professor.
-     * @param difficulty difficulty of professor
-     */
-    public void setDifficulty(int difficulty){
-        mDifficulty=difficulty;
-    }
-
-    /**
-     * Get the difficulty of professor.
-     * @return difficulty difficulty of professor
-     */
-    public int getDifficulty(){
-        return mDifficulty;
-    }
-
-    /**
-     * Set teaching ability of professor.
-     * @param teachingability teaching ability of professor
-     */
-    public void setTeachingability(int teachingability){
-        mTeachingAbility = teachingability;
-    }
-
-    /**
-     * Get teaching ability of professor.
-     * @return teaching ability of professor
-     */
-    public int getTeachingAbility(){
-        return mTeachingAbility;
-    }
-
-
-    /**
-     * Set help Offered of professor.
-     * @param helpOffered help offered of professor
-     */
-    public void setHelpOffered(int helpOffered){
-        mHelpOffered = helpOffered;
-    }
-
-    /**
-     * Get help Offered of professor.
-     * @return help offered of professor
-     */
-    public int getHelpOffered(){
-        return mHelpOffered;
-    }
+//    /**
+//     * Set the difficulty of professor.
+//     * @param difficulty difficulty of professor
+//     */
+//    public void setDifficulty(int difficulty){
+//        mDifficulty=difficulty;
+//    }
+//
+//    /**
+//     * Get the difficulty of professor.
+//     * @return difficulty difficulty of professor
+//     */
+//    public int getDifficulty(){
+//        return mDifficulty;
+//    }
+//
+//    /**
+//     * Set teaching ability of professor.
+//     * @param teachingability teaching ability of professor
+//     */
+//    public void setTeachingability(int teachingability){
+//        mTeachingAbility = teachingability;
+//    }
+//
+//    /**
+//     * Get teaching ability of professor.
+//     * @return teaching ability of professor
+//     */
+//    public int getTeachingAbility(){
+//        return mTeachingAbility;
+//    }
+//
+//
+//    /**
+//     * Set help Offered of professor.
+//     * @param helpOffered help offered of professor
+//     */
+//    public void setHelpOffered(int helpOffered){
+//        mHelpOffered = helpOffered;
+//    }
+//
+//    /**
+//     * Get help Offered of professor.
+//     * @return help offered of professor
+//     */
+//    public int getHelpOffered(){
+//        return mHelpOffered;
+//    }
 
     /**
      * Add a method to parse json String.

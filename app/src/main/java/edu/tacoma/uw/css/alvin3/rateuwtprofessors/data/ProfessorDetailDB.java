@@ -23,20 +23,23 @@ import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.ProfessorDetail;
  */
 public class ProfessorDetailDB {
 
-    /**The version of this database*/
+    /** The version of this database*/
     public static final int DB_VERSION = 1;
-    /**The database name*/
+
+    /** The database name*/
     public  String DB_NAME;
-    /**The professor Deatil database helper object*/
+
+    /** The professor Deatil database helper object*/
     private ProfessorDeatilDBHelper mProfessorDetailDBHelper;
     private SQLiteDatabase mSQLiteDatabase;
     private  String PROFESSOR_DETAIL_TABLE ;
     private  String CREATE_PROFESSOR_DETAIL_SQL;
     private  String DROP_PROFESSOR_DETAIL_SQL;
+
     /**
      * Create a constructor for the ProfessorDeatilDB class
      *
-     * @param context
+     * @param context context
      */
     public ProfessorDetailDB(Context context, String netId) {
         PROFESSOR_DETAIL_TABLE = netId;
@@ -82,7 +85,6 @@ public class ProfessorDetailDB {
         }
         return list ;
 
-
     }
 
 
@@ -92,18 +94,27 @@ public class ProfessorDetailDB {
      */
     class ProfessorDeatilDBHelper extends SQLiteOpenHelper {
 
-
         public ProfessorDeatilDBHelper(Context context, String name,
                                        SQLiteDatabase.CursorFactory factory, int version){
             super(context, name, factory, version);
 
         }
 
+        /**
+         * Create a professor detail table
+         * @param sqLiteDatabase SQLite database
+         */
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase){
             sqLiteDatabase.execSQL(CREATE_PROFESSOR_DETAIL_SQL);
         }
 
+        /**
+         * Update the version of professor detail table.
+         * @param sqLiteDatabase SQLite database
+         * @param i perilous version number
+         * @param i1 new version number
+         */
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1){
             sqLiteDatabase.execSQL(DROP_PROFESSOR_DETAIL_SQL);
@@ -140,8 +151,9 @@ public class ProfessorDetailDB {
 
     }
 
-
-
+    /**
+     * Close the SQlite database.
+     */
     public void closeDB(){
         mSQLiteDatabase.close();
     }

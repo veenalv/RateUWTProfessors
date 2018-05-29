@@ -217,7 +217,7 @@ public class ProfessorDetailFragment extends Fragment{
                         response += s;
                     }
                 } catch (Exception e) {
-                    response = "Unable to download the list of course, Reason: " +
+                    response = "Unable to download the list of professors, Reason: " +
                             e.getMessage();
                 } finally {
                     if (urlConnection != null) {
