@@ -254,7 +254,7 @@ public class ProfessorDetailFragment extends Fragment{
                     Log.i("netId = ", mNetId);
                 }
 
-               // mProfessorDeatilDB.deleteProfessorDetail();
+               mProfessorDeatilDB.deleteProfessorDetail();
 
                 for(int i = 0; i<mRatingList.size(); i++){
                     ProfessorDetail professorDetail = mRatingList.get(i);
