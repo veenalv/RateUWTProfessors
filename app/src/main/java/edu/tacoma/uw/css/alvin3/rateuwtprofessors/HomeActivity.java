@@ -18,7 +18,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -75,6 +74,18 @@ public class HomeActivity extends AppCompatActivity implements
      */
     private int mSort = 2;
 
+    /**
+     * Create a floating action button here and add an onClickListener() to it. This
+     * onClickListener() detects which fragment (the detail, or list fragment) is displayed and
+     * will launch the ProfessorAddFragment if the list fragment is displayed, or will launch
+     * the RatingAddFragment ifthe detail fragment is displayed.
+     *
+     * We will pass the NetID of the professors to the appropriate fragments for logic processing.
+     * The navigation view is started here as well as the tool bar.
+     * Finally, the list of professors will be populated here.
+     *
+     * @param savedInstanceState the bundle state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,7 +182,7 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     /**
-     *Inflate the menus in the HomeActivity.
+     * Inflate the menus in the HomeActivity.
      * @param menu menu
      * @return true/ false
      */
@@ -217,7 +228,9 @@ public class HomeActivity extends AppCompatActivity implements
         searchView.setSearchableInfo(searchManager.
                 getSearchableInfo(getComponentName()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            //Everytime the submit button is clicked, show a toast message for now.
+            /**
+             *  Everytime the submit button is clicked, show a toast message for now.
+             */
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(getApplicationContext(), "SUBMITTED", Toast.LENGTH_SHORT)
@@ -225,7 +238,12 @@ public class HomeActivity extends AppCompatActivity implements
                 return false;
             }
 
-            //Everytime the query text changes, re-filter our list of professors.
+            /**
+             * Every time the text changes as we type, we filter the list of professors
+             * and set the recyclerview adapter to reflect this change in our UI.
+             * @param newText the new text that the user entered
+             * @return false
+             */
             @Override
             public boolean onQueryTextChange(String newText) {
                 rlf.setAdapter(rlf.filter(newText), mSort);
@@ -237,7 +255,7 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     /**
-     * Make the menus action work
+     * Handle the interactions from the user on the MenuItem objects.
      * @param item item
      * @return true/false
      */
@@ -301,6 +319,12 @@ public class HomeActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Overridden method from the ProfessorListFragment which handles the interactions
+     * of each Professor item in the RecyclerView.
+     *
+     * @param item the Professor item
+     */
     @Override
     public void onListFragmentInteraction(Professor item) {
         //Create a new ProfessorDetailFragment if a user clicks on a Professor
@@ -317,7 +341,12 @@ public class HomeActivity extends AppCompatActivity implements
         actionMenuItem.collapseActionView();
     }
 
-
+    /**
+     * Overridden method from the ProfessorDetailFragment which handles the interactions
+     * of each Professor item in the RecyclerView.
+     *
+     * @param item the Professor item
+     */
     @Override
     public void onListFragmentInteraction(ProfessorDetail item) {
         //handle user clicking on ProfessorDetail items here.
@@ -408,7 +437,7 @@ public class HomeActivity extends AppCompatActivity implements
          * exception is caught. It tries to call the parse Method and checks to see if it was successful.
          * If not, it displays the exception.
          *
-         * @param result
+         * @param result the result
          */
         @Override
         protected void onPostExecute(String result) {

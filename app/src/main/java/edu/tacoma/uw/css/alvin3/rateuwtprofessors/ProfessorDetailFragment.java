@@ -141,7 +141,7 @@ public class ProfessorDetailFragment extends Fragment{
                     mProfessorDeatilDB = new ProfessorDetailDB(getActivity(),mNetId);
                 }
                 if(mRatingList == null){
-                    mRatingList = mProfessorDeatilDB.getProfessorDeatil();
+                    mRatingList = mProfessorDeatilDB.getProfessorDetail();
                 }
 
                 setAdapter(mRatingList);
@@ -258,7 +258,7 @@ public class ProfessorDetailFragment extends Fragment{
 
                 for(int i = 0; i<mRatingList.size(); i++){
                     ProfessorDetail professorDetail = mRatingList.get(i);
-                    mProfessorDeatilDB.insertProfessorDeatil(professorDetail.getOverallQuality(),
+                    mProfessorDeatilDB.insertProfessorDetail(professorDetail.getOverallQuality(),
                             professorDetail.getDifficulty(), professorDetail.getTeachingAbility(),
                             professorDetail.getHelpOffered(), professorDetail.getReview(),
                             professorDetail.getUpvote(), professorDetail.getDownvote());

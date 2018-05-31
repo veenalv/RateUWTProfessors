@@ -48,11 +48,12 @@ public class ProfessorDetail implements Serializable{
 
     /**The review of professor.*/
     private String mReview;
+
     /** The information about this professor.*/
     private int  mOverallQuality, mDifficulty,mTeachingAbility, mHelpOffered, mDownvotes, mUpvotes;
 
     /**
-     * Create a constructor.
+     * A constructor of our professor detail.
      *
      * param mOverallQuality Overall quality of professor
      * param mDifficulty Difficulty of professor

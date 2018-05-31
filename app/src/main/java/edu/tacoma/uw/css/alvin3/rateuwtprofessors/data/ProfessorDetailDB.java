@@ -30,7 +30,7 @@ public class ProfessorDetailDB {
     public  String DB_NAME;
 
     /** The professor Deatil database helper object*/
-    private ProfessorDeatilDBHelper mProfessorDetailDBHelper;
+    private ProfessorDetailDBHelper mProfessorDetailDBHelper;
     private SQLiteDatabase mSQLiteDatabase;
     private  String PROFESSOR_DETAIL_TABLE ;
     private  String CREATE_PROFESSOR_DETAIL_SQL;
@@ -51,7 +51,7 @@ public class ProfessorDetailDB {
 
         DROP_PROFESSOR_DETAIL_SQL = "DROP TABLE IF EXISTS " + netId;
 
-        mProfessorDetailDBHelper = new ProfessorDeatilDBHelper(context, DB_NAME, null, DB_VERSION);
+        mProfessorDetailDBHelper = new ProfessorDetailDBHelper(context, DB_NAME, null, DB_VERSION);
         mSQLiteDatabase =  mProfessorDetailDBHelper.getWritableDatabase();
     }
 
@@ -61,7 +61,7 @@ public class ProfessorDetailDB {
     // don't group the rows
     // don't filter by row groups
     // The sort order
-    public List<ProfessorDetail> getProfessorDeatil(){
+    public List<ProfessorDetail> getProfessorDetail(){
         String[] columns = {"OverallQuality", "Difficulty", "TeachingAbility", "HelpOffered",
                 "Review", "Upvotes", "Downvotes"};
         Cursor c = mSQLiteDatabase.query(PROFESSOR_DETAIL_TABLE, columns,
@@ -92,9 +92,9 @@ public class ProfessorDetailDB {
      * create an inner class called ProfessorDetailDBHelper that extends SQLiteOpenHelper class
      * and override the onCreate and onUpgrade methods.
      */
-    class ProfessorDeatilDBHelper extends SQLiteOpenHelper {
+    class ProfessorDetailDBHelper extends SQLiteOpenHelper {
 
-        public ProfessorDeatilDBHelper(Context context, String name,
+        public ProfessorDetailDBHelper(Context context, String name,
                                        SQLiteDatabase.CursorFactory factory, int version){
             super(context, name, factory, version);
 
@@ -134,8 +134,8 @@ public class ProfessorDetailDB {
      * @param downvotes downvote of this professor
      * @return the row ID of the newly inserted row,, or -1 if an error occurred.
      */
-    public boolean insertProfessorDeatil(int overallQuality, int difficulty, int teachingAbility,
-                                   int helpOffered, String review, int upvotes, int downvotes  ){
+    public boolean insertProfessorDetail(int overallQuality, int difficulty, int teachingAbility,
+                                         int helpOffered, String review, int upvotes, int downvotes  ){
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("OverallQuality",overallQuality);

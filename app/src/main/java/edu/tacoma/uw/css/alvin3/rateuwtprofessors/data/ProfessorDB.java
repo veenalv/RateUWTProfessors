@@ -131,7 +131,7 @@ public class ProfessorDB {
     }
 
     /**
-     * Delete all the data from the COURSE_TABLE。
+     * Delete all the data from the PROFESSOR_TABLE。
      */
     public void deleteProfessor(){
         mSQLiteDatabase.delete(PROFESSOR_TABLE ,

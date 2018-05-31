@@ -7,16 +7,12 @@
 
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.ProfessorDetailFragment.OnListFragmentInteractionListener;
 import edu.tacoma.uw.css.alvin3.rateuwtprofessors.professor.ProfessorDetail;
@@ -53,6 +49,11 @@ public class MyProfessorDetailRecyclerViewAdapter extends RecyclerView.Adapter<M
         return new ViewHolder(view);
     }
 
+    /**
+     * Set the content to contain the details of the Rating.
+     * @param holder the ViewHolder
+     * @param position the position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         Button upvote = new Button(holder.mContentView.getContext());
@@ -69,7 +70,7 @@ public class MyProfessorDetailRecyclerViewAdapter extends RecyclerView.Adapter<M
                         + "/" + mValues.get(position).getDownvote()
         );
 
-        //COMMENTED OUT here to disable the user from being able to click on
+        //COMMENT OUT here to disable the user from being able to click on
         //stuff in ProfessorDetail view.
         holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

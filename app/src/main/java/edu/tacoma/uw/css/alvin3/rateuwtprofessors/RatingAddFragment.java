@@ -1,5 +1,12 @@
 package edu.tacoma.uw.css.alvin3.rateuwtprofessors;
 
+/**
+ * TCSS 450 - Spring 2018 Team 8.
+ * @author Alvin Nguyen
+ * @author Maksim B Voznyarskiy
+ * @author Hui Ting Cai
+ */
+
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,12 +26,8 @@ import static android.content.ContentValues.TAG;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RatingAddFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RatingAddFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment used to display the friendly UI which the user
+ * may use to add a Rating into our database.
  */
 public class RatingAddFragment extends Fragment {
 
@@ -81,6 +84,15 @@ public class RatingAddFragment extends Fragment {
         }
     }
 
+    /**
+     * Hides the floating action button, creates a button to add the rating dynamically,
+     * and adds the URL for the web service if the button is clicked.
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -115,6 +127,11 @@ public class RatingAddFragment extends Fragment {
         return v;
     }
 
+    /**
+     * Build the url to add a rating into the database.
+     * @param v the view
+     * @return String the stringbuilder.toString
+     */
     private String buildCourseURL(View v) {
 
         StringBuilder sb = new StringBuilder(RATING_ADD_URL);
@@ -153,12 +170,6 @@ public class RatingAddFragment extends Fragment {
                     .show();
         }
         return sb.toString();
-    }
-
-    public void onButtonPressed(String uri) {
-        if (mListener != null) {
-            mListener.addRating(uri);
-        }
     }
 
     @Override

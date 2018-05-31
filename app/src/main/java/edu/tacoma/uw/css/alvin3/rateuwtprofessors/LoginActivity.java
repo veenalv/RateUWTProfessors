@@ -131,15 +131,6 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-//    /**
-//     * Method that is used to transfer the user to the register activity.
-//     * @param theView is th the view that is passed in when the user clicks on the register button.
-//     */
-//    public void registerClick(View theView) {
-//        Intent registerIntent = new Intent(this, RegisterActivity.class);
-//        startActivity(registerIntent);
-//    }
-
     /**
      * Private helper method that is used to display a dialog that warns the user
      * that the app is not connected to the internet. THey can either close the
