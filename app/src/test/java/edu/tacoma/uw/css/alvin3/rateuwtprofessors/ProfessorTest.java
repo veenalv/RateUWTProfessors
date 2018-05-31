@@ -86,6 +86,14 @@ public class ProfessorTest {
 
     }
 
+    /**
+     * Test the getProfessorName method.
+     */
+    @Test
+    public void testGetProfessorName(){
+        assertEquals(mLastName + ", " + mFirstName, mProfessor.getProfessorName());
+    }
+
 //    /**
 //     * Test the parseRatingJSON method.
 //     */
