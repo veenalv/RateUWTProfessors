@@ -44,6 +44,9 @@ public class ProfessorAddFragment extends Fragment {
     private final static String PROFESSOR_ADD_URL
             = "http://tcssalvin.000webhostapp.com/android/addProfessor.php?";
 
+    /**
+     * Required empty public constructor.
+     */
     public ProfessorAddFragment() {
         // Required empty public constructor
     }
@@ -65,6 +68,10 @@ public class ProfessorAddFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * On create method for this fragment.
+     * @param savedInstanceState is the bundle passed in.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +155,11 @@ public class ProfessorAddFragment extends Fragment {
         return sb.toString();
     }
 
+    /**
+     * Attaches the passed in context.
+     *
+     * @param context is the context that will be attached.
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -159,6 +171,9 @@ public class ProfessorAddFragment extends Fragment {
         }
     }
 
+    /**
+     * Detaches the mListener.
+     */
     @Override
     public void onDetach() {
         super.onDetach();

@@ -41,6 +41,13 @@ public class MyProfessorRecyclerViewAdapter extends RecyclerView.Adapter<MyProfe
         mListener = listener;
     }
 
+    /**
+     * Called when creating this view holder.
+     *
+     * @param parent is the parents viewgroup.
+     * @param viewType is the view type.
+     * @return a viewholder.
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -48,6 +55,12 @@ public class MyProfessorRecyclerViewAdapter extends RecyclerView.Adapter<MyProfe
         return new ViewHolder(view);
     }
 
+    /**
+     * Binds the viewholder.
+     *
+     * @param holder is the viewholder passed in.
+     * @param position is the position of the item to grab.
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -66,6 +79,11 @@ public class MyProfessorRecyclerViewAdapter extends RecyclerView.Adapter<MyProfe
         });
     }
 
+    /**
+     * Returns the item count.
+     *
+     * @return the item count.
+     */
     @Override
     public int getItemCount() {
         return mValues.size();
@@ -80,6 +98,10 @@ public class MyProfessorRecyclerViewAdapter extends RecyclerView.Adapter<MyProfe
         public final TextView mContentView;
         public Professor mItem;
 
+        /**
+         * Constructor that receives a view as a parameter.
+         * @param is the view passed in.
+         */
         public ViewHolder(View view) {
             super(view);
             mView = view;
@@ -87,6 +109,10 @@ public class MyProfessorRecyclerViewAdapter extends RecyclerView.Adapter<MyProfe
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 
+        /**
+         * Returns a string representation of this class.
+         * @return a string representation of the class.
+         */
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";

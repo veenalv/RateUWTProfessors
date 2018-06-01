@@ -45,6 +45,12 @@ public class ProfessorDB {
     // don't group the rows
     // don't filter by row groups
     // The sort order
+
+    /**
+     * Returns a list of professors.
+     *
+     * @return a list of professors.
+     */
     public List<Professor> getProfessor(){
         String[] columns = {"FirstName", "LastName", "NetID"};
         Cursor c = mSQLiteDatabase.query(PROFESSOR_TABLE, columns,

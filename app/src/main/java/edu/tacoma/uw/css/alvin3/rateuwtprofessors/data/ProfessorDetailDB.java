@@ -61,6 +61,12 @@ public class ProfessorDetailDB {
     // don't group the rows
     // don't filter by row groups
     // The sort order
+
+    /**
+     * Returns a list of professor details.
+     *
+     * @return a list of professor details.
+     */
     public List<ProfessorDetail> getProfessorDetail(){
         String[] columns = {"OverallQuality", "Difficulty", "TeachingAbility", "HelpOffered",
                 "Review", "Upvotes", "Downvotes"};

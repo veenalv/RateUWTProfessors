@@ -98,6 +98,11 @@ public class ProfessorDetailFragment extends Fragment{
         return mNetId;
     }
 
+    /**
+     * On create method for this fragment.
+     *
+     * @param savedInstanceState is the bundle used to create this fragment.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +111,7 @@ public class ProfessorDetailFragment extends Fragment{
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

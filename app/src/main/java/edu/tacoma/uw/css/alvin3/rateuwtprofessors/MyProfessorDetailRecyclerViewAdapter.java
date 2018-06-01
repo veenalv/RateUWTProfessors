@@ -42,6 +42,13 @@ public class MyProfessorDetailRecyclerViewAdapter extends RecyclerView.Adapter<M
         mListener = listener;
     }
 
+    /**
+     * Creates the view holder.
+     *
+     * @param parent is the parent viewGroup.
+     * @param viewType is the viewtype.
+     * @return a viewholder.
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -99,6 +106,11 @@ public class MyProfessorDetailRecyclerViewAdapter extends RecyclerView.Adapter<M
         public final TextView mContentView;
         public ProfessorDetail mItem;
 
+        /**
+         * Constructor for this class that accepts a view.
+         *
+         * @param view is the view passed in.
+         */
         public ViewHolder(View view) {
             super(view);
             mView = view;
@@ -106,6 +118,11 @@ public class MyProfessorDetailRecyclerViewAdapter extends RecyclerView.Adapter<M
             mContentView = (TextView) view.findViewById(R.id.item_number);
         }
 
+        /**
+         * Tostring for this viewholder.
+         *
+         * @return a string representation of this viewholder.
+         */
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
